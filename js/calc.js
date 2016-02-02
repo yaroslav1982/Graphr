@@ -92,6 +92,7 @@ function calc() {
 		return false;
 	};
 
+
 	//Uses Newton's method to find the root of the equation. Accurate enough for these purposes.
 	this.getRoot = function(equation, guess, range, shifted){
         var expr = math.parse(equation);
@@ -122,7 +123,8 @@ function calc() {
 		var prev = guess;
 		var j = 0;
 
-        var code = expr.compile(math);
+//         var code = expr.compile(math);
+        var code = expr.compile();
         var variables = this.variablesInExpression(expr);
 
         var f = function (x) {
@@ -224,7 +226,8 @@ function calc() {
 
     this.makeFunction = function (equation) {
        var expr = math.parse(equation);
-       var code = expr.compile(math);
+       var code = expr.compile();
+//       var code = expr.compile(math);
        var variables = Calc.variablesInExpression(expr);
 
        return function (x) {

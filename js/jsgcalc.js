@@ -179,7 +179,8 @@ function JSgCalc (element){
 		var xpos = labelCoord.x;
 		var ypos = labelCoord.y;
 
-		this.ctx.font = "12pt 'open sans'";
+//		this.ctx.font = "12pt 'open sans'";
+		this.ctx.font = "12pt 'Lucida Console'";
 		this.ctx.fillStyle = color;
 		this.ctx.beginPath();
 		this.ctx.moveTo(xpos, ypos);
@@ -316,7 +317,8 @@ function JSgCalc (element){
 		this.ctx.stroke();
 
 		//draw label text
-		this.ctx.font = "10pt 'open sans'";
+// 		this.ctx.font = "10pt 'open sans'";
+		this.ctx.font = "10pt 'Lucida Console'";
 		this.ctx.fillStyle = "#000000";
 		var text = "x="+xval+", d/dx="+slope;
 		var xval2 = xval;	//find out whether to put label above or below dot
@@ -405,7 +407,8 @@ function JSgCalc (element){
 		}
 		this.ygridscale = i;
 
-		this.ctx.font = "10pt 'open sans'";	//set the font
+// 		this.ctx.font = "10pt 'open sans'";	//set the font
+		this.ctx.font = "10pt 'Lucida Console'";	//set the font
 		this.ctx.textAlign = "center";
 
 		var xaxis = yaxis = null;

@@ -1,13 +1,13 @@
 function JSgui() {
 	this.currInput = 0;
-	this.lineColors = {"#FF0000" : -1, "#0000FF" : -1, "#00FF00" : -1, "#FF00FF" : -1, "#00FFFF" : -1,
+	this.lineColors = {"#ff0000" : -1, "#0000ff" : -1, "#00ff00" : -1, "#ff00ff" : -1, "#00ffff" : -1,
 		"#000000" : -1, "#990000" : -1, "#000099" : -1, "#009900" : -1, "#999900" : -1, "#990099" : -1, "#009999" : -1};
 	this.lineSettings = {0 : {color : "#FF0000"}};
 	this.currtool = "pointer";
 	this.currEq = 0;
 	this.gridlines = "normal";
 	this.settings = {};
-	
+
 	this.setQuality = function(q) {
 		$("#quality_select a").removeClass("option_selected");
 		q2 = String(q).replace(".", "");
@@ -35,17 +35,17 @@ function JSgui() {
 	this.setTool = function(t) {
 		$("#tool_select a").removeClass("toolbar_selected");
 		$("#tool_select_"+t).addClass("toolbar_selected");
-		
+
 		//Toolbox
 		$(".toolbox").hide();
 		$("#toolbox_"+t).show();
 		$("#toolbox_"+t).css("top", $("#tool_select_"+t).offset().top - 23);
 		$("#toolbox_"+t).css("right", $(document).width() - $("#tool_select_"+t).offset().left + 5);
-		
+
 		this.currtool = t;
 		jsgcalc.draw();
 	}
-	
+
 	this.doTrace = function(xval) {
 		jsgcalc.draw();
 		jsgcalc.drawTrace(jsgcalc.getEquation(this.currEq), "#000000", xval);
@@ -65,7 +65,7 @@ function JSgui() {
 		$("#showSidebar").show();
 		$("#toolbar").css("right", "0px");
 		jsgcalc.resizeGraph($("#wrapper").width() - widthPlusPadding("#toolbar"), $("#wrapper").height());
-		
+
 		this.setTool(this.currtool);
 	}
 
@@ -73,12 +73,12 @@ function JSgui() {
 		$("#sidewrapper").show();
 		$("#hideSidebar").show();
 		$("#showSidebar").hide();
-		$("#toolbar").css("right", "252px");
+		$("#toolbar").css("right", "282px");
 		jsgcalc.resizeGraph($("#wrapper").width() - $("#sidewrapper").width() - widthPlusPadding("#toolbar"), $("#wrapper").height());
-		
+
 		this.setTool(this.currtool);
 	}
-	
+
 	this.updateInputData = function() {
 		jsgcalc.lines = [];
 		$("#graph_inputs div.graph_input_wrapper").each(function() {
@@ -98,7 +98,7 @@ function JSgui() {
 				return color;
 		}
 	}
-	
+
 	//Update gui values
 	this.updateValues = function() {
 		$("input.jsgcalc_xmin").val(Math.round(jsgcalc.currCoord.x1 * 1000) / 1000);
@@ -118,19 +118,43 @@ function JSgui() {
 		this.currInput++;
 		this.refreshInputs();
 	}
-	
+
+	this.removeInput = function(t) {
+		var parent = t.parentNode;
+		var div = parent.getElementsByClassName("graph_color_indicator")[0];
+		var bc = this.rgb2hex(div.style.backgroundColor);
+		var lc = "";
+		for(var i = 0; i < jsgcalc.lines.length; i++) {
+			lc = jsgcalc.lines[i].color;
+			if(!lc.match(/^#/)) {
+				lc = this.rgb2hex(jsgcalc.lines[i].color);
+			}
+			if(bc == lc) {
+				this.makeColorAvailable(bc, jsgcalc.lines[i].color);
+				jsgcalc.lines.splice(i, 1);
+			}
+		}
+		var wrappr = parent.parentNode;
+		wrappr.removeChild(parent);
+		this.currInput--;
+		if(wrappr.childNodes.length < 1) {
+ 			this.refreshInputs();
+		}
+	}
+
 	this.refreshInputs = function() {
 		var equations = jsgcalc.lines;
-		
+
 		$("#graph_inputs").html("");
 		for(i in equations) {
-			$("#graph_inputs").append("<div id=\"graph_input_wrapper_"+i+"\" class=\"graph_input_wrapper\">"+
-				"<div class=\"graph_color_indicator\" id=\"graph_color_indicator_"+i+"\"></div>"+
-				"<div class=\"graph_equation_display\"><span>y =</span><input id=\"graph_input_"+i+"\" size=\"20\" value=\""+equations[i].equation+"\"/></div></div>");
-			$("#graph_color_indicator_"+i).css("backgroundColor", equations[i].color);
+			$("#graph_inputs").append("<div id=\"graph_input_wrapper_" + i + "\" class=\"graph_input_wrapper\">" +
+				"<button onclick=\"jsgui.removeInput(this)\" class=\"graph_equation_remover\" id=\"graph_equation_remover_" + i + "\">X</button>" +
+				"<div class=\"graph_color_indicator\" id=\"graph_color_indicator_" + i + "\"></div>" +
+				"<div class=\"graph_equation_display\"><span>y =</span><input id=\"graph_input_" + i + "\" size=\"20\" value=\"" + equations[i].equation + "\"/></div></div>");
+			$("#graph_color_indicator_" + i).css("backgroundColor", equations[i].color);
 			this.lineColors[equations[i].color] = i;
 		}
-		
+
 		$("#graph_inputs div.graph_input_wrapper").each(function() {
 			$(this).bind("click", function() {
 				var id = $(this).attr("id");
@@ -138,12 +162,30 @@ function JSgui() {
 				jsgui.selectEquation(num);
 			});
 		});
-		
+
 		this.currInput = i + 1;
-		
+
 		$("#graph_input_wrapper_"+this.currEq).addClass("active_equation");
 	}
-	
+
+	this.hexDigits = new Array("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
+
+	this.rgb2hex = function(rgb) {
+		rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+		return "#" + this.hex(rgb[1]) + this.hex(rgb[2]) + this.hex(rgb[3]);
+	}
+
+	this.hex = function(x) {
+		return isNaN(x) ? "00" : this.hexDigits[(x - x % 16) / 16] + this.hexDigits[x % 16];
+	}
+
+	this.makeColorAvailable = function(bc, lc) {
+		for(var c in this.lineColors) {
+			if(c == bc || c == lc) {
+				this.lineColors[c] = -1;
+			}
+		}
+	}
 
 }
 
@@ -154,6 +196,6 @@ $(document).ready(function() {
 	$(".toolbox_close a").click(function() {
 		$(".toolbox").hide();
 	})
-	
+
 	document.body.onselectstart = function () { return false; }
 });

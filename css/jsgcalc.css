@@ -5,19 +5,19 @@ body { font-family: "Open Sans", sans-serif; font-size: 9pt;}
 
 #wrapper { position: absolute; top: 0px; left: 0px; height: 100%; width: 100%;overflow: hidden;}
 
-#toolbar { width: 36px; padding: 35px 5px 0px 5px; height: 100%; background: #EDEDED; border-left: 1px solid #BBB; position: absolute; z-index: 10; right: 252px; top: 0;}
+#toolbar { width: 36px; padding: 35px 5px 0px 5px; height: 100%; background: #EDEDED; border-left: 1px solid #BBB; position: absolute; z-index: 10; right: 282px; top: 0;}
 #tool_select img { border: 1px solid transparent; opacity: 0.5; border-radius: 5px; }
 #tool_select img:hover { opacity: 1.0;}
 #tool_select a.toolbar_selected img { border: 1px solid #CCC; opacity: 1.0 !important; background: #FFF; 
 	-webkit-box-shadow: inset 0px -900px 50px -900px rgba(150, 150, 150, 0.3), inset 0px 1px 0px 0px #FFF;
 	box-shadow: inset 0px -900px 40px -900px rgba(150, 150, 150, 0.3), inset 0px 1px 0px 0px #FFF;}
 
-#sidewrapper { position: absolute; top: 1px; right: 1px; width: 250px; z-index: 5; background: #F6F6F6; border-left: 1px solid #BBB; height: 100%; overflow: auto;}
+#sidewrapper { position: absolute; top: 1px; right: 1px; width: 280px; z-index: 5; background: #F6F6F6; border-left: 1px solid #BBB; height: 100%; overflow: auto;}
 #graph_sidebar { margin: 5px 10px;}
 #hideSidebar, #showSidebar { z-index: 11; font-size: 15pt; font-weight: bold; border-bottom: 1px solid #999; width: 46px;
 	background: #F7F7F7; position: absolute; top: -1px;}
 #showSidebar { display: none; right: 0px; }
-#hideSidebar { right: 252px; display: inline;}
+#hideSidebar { right: 282px; display: inline;}
 #showSidebar a, #hideSidebar a { color: #666; text-decoration: none; display: block; padding-top: 0px; text-align: right; padding-right: 13px;}
 #showSidebar a {text-align: left; padding-left: 13px;}
 
@@ -26,13 +26,31 @@ body { font-family: "Open Sans", sans-serif; font-size: 9pt;}
 .toolbox_close { float: right; display: inline-block;}
 .toolbox_main { padding: 3px;}
 
-.graph_input_wrapper { margin-bottom: 5px; padding: 4px 6px; margin: 1px 0px; font-family: "Droid Serif", "Georgia", serif; font-size: 12pt;}
-.active_equation { background: #F0F0F0; padding: 3px 5px; border: 1px solid #CCC; border-radius: 5px; text-shadow:1px 1px 0px #FAFAFA; 
+.graph_input_wrapper { margin-bottom: 5px; padding: 4px 6px; margin: 1px 0px; font-family: "Lucida Console"; font-size: 10pt;cursor:pointer;}
+.graph_input_wrapper:hover { background-color:#DDD; }
+.active_equation { background: #DDD; }
+/*.active_equation { background: #F0F0F0; padding: 3px 5px; border: 1px solid #CCC; border-radius: 5px; text-shadow:1px 1px 0px #FAFAFA;
 	-webkit-box-shadow: inset 0px -900px 50px -900px rgba(150, 150, 150, 0.3), inset 0px 1px 0px 0px #FFF;
 	box-shadow: inset 0px -900px 40px -900px rgba(150, 150, 150, 0.3), inset 0px 1px 0px 0px #FFF; }
+*/
 .graph_equation_display span { padding-right: 5px;}
-.graph_color_indicator { height: 22px; width: 22px; border: 1px solid #BBB; float: right;}
-#graph_inputs input { height: 16px; padding: 1px; clear: both; width: 156px; border: 1px solid #BBB; padding: 3px; font-size: 12pt; font-family: "Droid Serif", "Georgia", serif;}
+.graph_equation_remover {
+	float: right;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #CCC;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: Tahoma;
+    margin-left: 5px;
+    background-color: #FEFEFE;
+    border-radius: 4px;
+}
+.graph_equation_remover:hover {
+	background-color:#EEE;
+}
+.graph_color_indicator { height: 22px; width: 22px; border: 1px solid #BBB; float: right;border-radius:4px; }
+#graph_inputs input { height: 16px; padding: 1px; clear: both; width: 156px; border: 1px solid #BBB; padding: 3px; font-size: 10pt; font-family: "Lucida Console";}
 
 #settings_button {padding: 5px 6px; height: 16px; vertical-align: bottom;}
 #settings_button img { height: 100%; opacity: 0.5;}
@@ -54,32 +72,20 @@ textarea { border: 1px dashed #56ADFF; outline: none; resize: none; overflow: hi
 textarea:focus { border: 1px solid #56ADFF;}
 
 a { text-decoration: none;}
-a:hover { text-decoration: underline;}
+a:hover { text-decoration: none;}
 
 .fancybutton {
-	-moz-box-shadow:inset 0px 1px 0px 0px #97c4fe;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #97c4fe;
-	box-shadow:inset 0px 1px 0px 0px #97c4fe;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0) );
-	background:-moz-linear-gradient( center top, #3d94f6 5%, #1e62d0 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0');
 	background-color:#3d94f6;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
+	border-radius:4px;
 	border:1px solid #337fed;
 	display:inline-block;
 	color:#ffffff;
-	font-family:'open sans', arial;
+	font-family:"Tahoma";
 	font-size:13px;
 	font-weight:bold;
 	padding:4px 12px;
 	text-decoration:none;
-	text-shadow:1px 1px 0px #1570cd;
 }.fancybutton:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6) );
-	background:-moz-linear-gradient( center top, #1e62d0 5%, #3d94f6 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6');
 	background-color:#1e62d0;
 }.fancybutton:active {
 	position:relative;

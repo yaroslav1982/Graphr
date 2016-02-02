@@ -98,7 +98,7 @@ function calc() {
         var expr = math.parse(equation);
         var variables = this.variablesInExpression(expr);
 
-		dump(equation + ', guess: ' + guess);
+// 		dump(equation + ', guess: ' + guess);
 		//Newton's method becomes very inaccurate if the root is too close to zero. Therefore we just whift everything over a few units.
 		if((guess > -0.1 && guess < 0.1) && shifted != true) {
             var replacedEquation = equation;
@@ -108,9 +108,9 @@ function calc() {
               replacedEquation = replacedEquation.replace(new RegExp('\\b' + v + '\\b', 'g'), '(' + v + '+5)');
             }
 
-			dump('Replaced equation = ' + replacedEquation);
+// 			dump('Replaced equation = ' + replacedEquation);
 			var answer = this.getRoot(replacedEquation, (guess - 5), range, true);
-			dump(answer);
+// 			dump(answer);
 			if(answer !== false)
 				return answer + 5;
 			return false;
@@ -155,11 +155,11 @@ function calc() {
 		}
 
 		if (j >= 100) {
-            dump('Convergence failed, best root = ' + prev);
+//             dump('Convergence failed, best root = ' + prev);
             return prev;
 		}
 
-		dump('false: center at ' + center + ' but guess at ' + prev);
+// 		dump('false: center at ' + center + ' but guess at ' + prev);
 
 		return false;
 	};

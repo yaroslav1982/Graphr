@@ -108,15 +108,21 @@ function JSgui() {
 	}
 
 	this.addInput = function() {
-		this.updateInputData();
-		var newcolor = this.findAvailableColor();
-		this.lineColors[newcolor] = this.currInput;
-		jsgcalc.lines.push({
-			equation: "",
-			color: newcolor
-		});
-		this.currInput++;
-		this.refreshInputs();
+		if(jsgcalc.lines.length < 11) {
+			this.updateInputData();
+			var newcolor = this.findAvailableColor();
+			this.lineColors[newcolor] = this.currInput;
+			jsgcalc.lines.push({
+				equation: "",
+				color: newcolor
+			});
+			this.currInput++;
+			this.refreshInputs();
+		}
+		else {
+			alert("Sorry, there is a limit of 10 equations for this app!");
+			console.log("Tried to add too many equations!");
+		}
 	}
 
 	this.removeInput = function(t) {
@@ -163,6 +169,12 @@ function JSgui() {
 			});
 		});
 
+		$(".graph_equation_display").keyup(function(event){
+			if(event.keyCode == 13){
+				jsgui.evaluate();
+			}
+		});
+
 		this.currInput = i + 1;
 
 		$("#graph_input_wrapper_"+this.currEq).addClass("active_equation");
@@ -196,6 +208,12 @@ $(document).ready(function() {
 	$(".toolbox_close a").click(function() {
 		$(".toolbox").hide();
 	})
+
+	$(".graph_equation_display").keyup(function(event){
+		if(event.keyCode == 13){
+			jsgui.evaluate();
+		}
+	});
 
 	document.body.onselectstart = function () { return false; }
 });

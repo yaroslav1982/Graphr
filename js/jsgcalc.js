@@ -207,7 +207,7 @@ function JSgCalc (element){
 	};
 
 	//Draws thge vertex of an equation (i.e. when it changes direction)
-		this.drawVertex = function(equation, color, x) {
+	this.drawVertex = function(equation, color, x) {
 		var f = Calc.makeFunction(equation);
 
 		var scale = this.getScale();

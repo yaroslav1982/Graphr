@@ -11,7 +11,7 @@ function JSgui() {
 	this.setQuality = function(q) {
 		$("#quality_select a").removeClass("option_selected");
 		q2 = String(q).replace(".", "");
-		$("#quality_select_"+q2).addClass("option_selected");
+		$("#quality_select_" + q2).addClass("option_selected");
 
 		jsgcalc.quality = q;
 		jsgcalc.draw();
@@ -19,7 +19,7 @@ function JSgui() {
 
 	this.setAngles = function(q) {
 		$("#angle_select a").removeClass("option_selected");
-		$("#angle_select_"+q).addClass("option_selected");
+		$("#angle_select_" + q).addClass("option_selected");
 
 		Calc.angles = q;
 		jsgcalc.draw();
@@ -28,19 +28,19 @@ function JSgui() {
 	this.selectEquation = function(x) {
 		this.currEq = x;
 		$("#graph_inputs div.graph_input_wrapper").removeClass("active_equation");
-		$("#graph_input_wrapper_"+x).addClass("active_equation");
+		$("#graph_input_wrapper_" + x).addClass("active_equation");
 		jsgcalc.draw();
 	}
 
 	this.setTool = function(t) {
 		$("#tool_select a").removeClass("toolbar_selected");
-		$("#tool_select_"+t).addClass("toolbar_selected");
+		$("#tool_select_" + t).addClass("toolbar_selected");
 
 		//Toolbox
 		$(".toolbox").hide();
-		$("#toolbox_"+t).show();
-		$("#toolbox_"+t).css("top", $("#tool_select_"+t).offset().top - 23);
-		$("#toolbox_"+t).css("right", $(document).width() - $("#tool_select_"+t).offset().left + 5);
+		$("#toolbox_" + t).show();
+		$("#toolbox_" + t).css("top", $("#tool_select_" + t).offset().top - 23);
+		$("#toolbox_" + t).css("right", $(document).width() - $("#tool_select_" + t).offset().left + 5);
 
 		this.currtool = t;
 		jsgcalc.draw();
@@ -53,7 +53,7 @@ function JSgui() {
 
 	this.setGridlines = function(t) {
 		$("#gridlines_select a").removeClass("option_selected");
-		$("#gridlines_select_"+t).addClass("option_selected");
+		$("#gridlines_select_" + t).addClass("option_selected");
 
 		this.gridlines = t;
 		jsgcalc.draw();
@@ -177,7 +177,7 @@ function JSgui() {
 
 		this.currInput = i + 1;
 
-		$("#graph_input_wrapper_"+this.currEq).addClass("active_equation");
+		$("#graph_input_wrapper_" + this.currEq).addClass("active_equation");
 	}
 
 	this.hexDigits = new Array("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");

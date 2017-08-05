@@ -11,6 +11,147 @@ function widthPlusPadding(elem) {
 	return $(elem).width() + parseFloat($(elem).css('paddingRight')) + parseFloat($(elem).css('paddingLeft'));
 }
 
+
+function getMultipleSelectedValue()
+    {
+      var x4=document.getElementById("muBox");
+      for (var i = 0; i < x4.options.length; i++) {
+         if(x4.options[i].selected ==true){
+              alert(x4.options[i].value);
+          }
+      }
+    }
+
+ function getMultipleSelectedValue2()
+    {
+      var x5=document.getElementById("E1mu");
+      for (var i = 0; i < x5.options.length; i++) {
+         if(x5.options[i].selected ==true){
+              alert(x5.options[i].value);
+          }
+      }
+    }
+
+function getMultipleSelectedValue3()
+    {
+var j=0;
+var a='a';
+var b='b';
+
+      var x=document.getElementById("muBox");
+      for (var i = 0; i < x.options.length; i++) {
+         if(x.options[i].selected ==true){
+              //alert(x.options[i].value);
+		if(j==0){
+a=x.options[i].value;
+j=1;
+}
+		if(j==1){
+b=x.options[i].value;
+//j=1;
+}
+
+          }
+      }
+
+//alert(a);
+//alert(b);
+
+document.getElementById("sca1").value = a;
+document.getElementById("sca2").value = b;
+
+    }
+
+function getMultipleSelectedValue4()
+    {
+var j=0;
+var a='a';
+var b='b';
+
+      var x=document.getElementById("E1mu");
+      for (var i = 0; i < x.options.length; i++) {
+         if(x.options[i].selected ==true){
+              //alert(x.options[i].value);
+		if(j==0){
+a=x.options[i].value;
+j=1;
+}
+		if(j==1){
+b=x.options[i].value;
+//j=1;
+}
+
+          }
+      }
+
+//alert(a);
+//alert(b);
+
+document.getElementById("sca3").value = a;
+document.getElementById("sca4").value = b;
+
+    }
+
+function removeOptionLast()
+{
+ 
+for(var i = 0; i < 20; i++) {
+
+ var elSel = document.getElementById('muBox');
+  if (elSel.length > 0)
+  {
+    elSel.remove(elSel.length - 1);
+  }
+
+}
+
+}
+
+function removeOptionLast2()
+{
+ 
+for(var i = 0; i < 20; i++) {
+
+ var elSel = document.getElementById('E1mu');
+  if (elSel.length > 0)
+  {
+    elSel.remove(elSel.length - 1);
+  }
+
+}
+
+}
+
+function appendOptionLast(num)
+{
+  var elOptNew = document.createElement('option');
+  elOptNew.text = num;
+  elOptNew.value = num;
+  var elSel = document.getElementById('muBox');
+
+  try {
+    elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+  }
+  catch(ex) {
+    elSel.add(elOptNew); // IE only
+  }
+}
+
+function appendOptionLast2(num)
+{
+  var elOptNew = document.createElement('option');
+  elOptNew.text = num;
+  elOptNew.value = num;
+  var elSel = document.getElementById('E1mu');
+
+  try {
+    elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+  }
+  catch(ex) {
+    elSel.add(elOptNew); // IE only
+  }
+}
+
 function JSgCalc (element){
 	this.graph = document.getElementById(element);
 	this.graphElement = $("#"+element);
@@ -21,7 +162,7 @@ function JSgCalc (element){
 	this.startDrag = {x : 0, y : 0};
 	this.prevDrag = {x : 0, y : 0};
 	this.startCoord = {x1 : 0, y1 : 0, x2 : 0, y2 : 0};
-	this.currCoord = {x1 : -5, y1 : -5, x2 : 5, y2 : 5};
+	this.currCoord = {x1 : -50, y1 : -50, x2 : 50, y2 : 50};
 	this.mousebutton = 0;
 	this.canvasX = this.graph.offsetLeft;
 	this.canvasY = this.graph.offsetTop;
@@ -94,14 +235,14 @@ function JSgCalc (element){
 		var inverseQuality = 1.0 / this.quality;
 		var inverseScaleX = 1.0 / scale.x;
 
-		var maxxval = this.width + inverseQuality;
+		var maxxval = this.width+ inverseQuality;
 
 		var f = Calc.makeFunction(equation);
 
+if(equation !== '0'){
 		for(var i = 0; i < maxxval; i += inverseQuality) {
 			var xval = i * inverseScaleX + x1;	//calculate the x-value for a given pixel
             var yval = f(xval);
-
 			var ypos = this.height - ((yval - y1) * scale.y);
 			//The line is on the screen, or pretty close to it
 			if(ypos >= (this.height * -1) && ypos <= this.height * 2) {
@@ -127,6 +268,65 @@ function JSgCalc (element){
 			this.fillareapath.push([i, ypos]);
 			//this.ctx.fillRect(i - 0.5, ypos - 0.5, 1, 1);
 		}
+// this!!!
+}
+
+if(equation=='0'){
+
+var textFrom2 = document.getElementById("target").value
+var textXbox = document.getElementById("xBox").value
+var textYbox = document.getElementById("yBox").value
+textArray = textFrom2.split("\n");
+
+//alert(textArray[2]);
+
+//for(var i=0; i<textArray.length;i++) 
+//{
+//}
+
+//this.ctx.lineTo(0, 0);
+//		for(var xval=-10; xval < 5; xval++) {
+var temps=['0.1','4'];
+var xval =1;
+var yval = 2;
+
+for(var ii=0; ii<textArray.length;ii++) {
+temps= textArray[ii].split("\t");
+xval =parseFloat(temps[parseFloat(textXbox)]);
+yval = parseFloat(temps[parseFloat(textYbox)]);
+
+			//var xval = i * inverseScaleX + x1;	//calculate the x-value for a given pixel
+var i = (xval-x1)/inverseScaleX;
+            //var yval = f(xval);
+			var ypos = this.height - ((yval - y1) * scale.y);
+			//The line is on the screen, or pretty close to it
+			if(ypos >= (this.height * -1) && ypos <= this.height * 2) {
+				if(lineExists > 1)
+					this.ctx.beginPath();
+
+				if(lastpoint !== false && ((lastpoint > 0 && yval < 0) || (lastpoint < 0 && yval > 0))) {
+					this.ctx.moveTo(i, ypos);
+				}
+				else {
+					this.ctx.lineTo(i, ypos);
+				}
+
+				lineExists = 0;
+				lastpoint = false;
+			}
+			else if(lineExists <= 1) {	//The line is off the screen
+				this.ctx.lineTo(i, ypos);
+				lastpoint = yval;
+				this.ctx.stroke();
+				lineExists++;
+			}
+			this.fillareapath.push([i, ypos]);
+			//this.ctx.fillRect(i - 0.5, ypos - 0.5, 1, 1);
+		}
+
+//this.ctx.lineTo(10, 20);
+}
+
 		this.fillareapath.push([maxxval, this.height - ((-y1) * scale.y)]);
 		this.ctx.stroke();
 		this.ctx.linewidth = old_linewidth
@@ -147,6 +347,9 @@ function JSgCalc (element){
 				this.ctx.lineTo(this.fillareapath[i][0], this.fillareapath[i][1]);
 			}
 		}
+//this.ctx.lineTo(0, 0);
+//this.ctx.lineTo(20, 10);
+
 		this.ctx.fill();
 	}
 
@@ -161,6 +364,7 @@ function JSgCalc (element){
 		var end = this.getCoord(x2, y2);
 		this.ctx.moveTo(start.x, start.y);
 		this.ctx.lineTo(end.x, end.y);
+//this.ctx.lineTo(0, 0);
 
 		var tmp = this.ctx.lineWidth
 		if(thickness)
@@ -192,12 +396,13 @@ function JSgCalc (element){
 			xpos += textwidth + 3;
 		this.ctx.fillText(text, xpos-3, ypos-3);
 	};
-
+			
+color = "#00FF00";
 	this.drawDot = function(xval, yval, color, radius) {
 		if(!radius)
 			radius = 4;
 		if(!color)
-			color = "#000000";
+			color = "#00FF00";
 
 		var coord = this.getCoord(xval, yval);
 		this.ctx.beginPath();
@@ -224,6 +429,7 @@ function JSgCalc (element){
 		var xval = Calc.roundFloat(answer);
 		var yval = f(xval);
 		var yval = Calc.roundFloat(this.arbRound(yval, 0.0000001));
+color = "#00FF00";
 		this.drawDot(xval, yval, color, 4);
 
 		//draw label text
@@ -243,7 +449,7 @@ function JSgCalc (element){
 
 		var xval = Calc.roundFloat(answer);
 		var yval = 0;
-
+color = "#00FF00";
 		this.drawDot(xval, yval, color, 4); //draw the dot
 		//draw label text
 		this.drawLabel(xval, yval, Calc.roundFloat(this.arbRound(xval, 0.00000001))+", " + yval);
@@ -277,7 +483,7 @@ function JSgCalc (element){
 		var f = Calc.makeFunction(equation);
 
 		var yval = f(xval);
-
+color = "#00FF00";
 		//Draw dot
 		this.drawDot(xval, yval, color, 4);
 
@@ -314,6 +520,8 @@ function JSgCalc (element){
 		lineend = this.getCoord(lineend.x, lineend.y);
 		this.ctx.moveTo(linestart.x, linestart.y);
 		this.ctx.lineTo(lineend.x, lineend.y);
+//this.ctx.lineTo(0, 0);
+//this.ctx.lineTo(50, 10);
 		this.ctx.stroke();
 
 		//draw label text
@@ -359,7 +567,7 @@ function JSgCalc (element){
 			//draw label text
 			this.drawLabel(xval, yval, xval + ", " + yval, "#000000");
 		}
-
+color = "#00FF00";
 		//Draw dot
 		this.drawDot(xval, yval, color, 4);
 
@@ -440,6 +648,8 @@ function JSgCalc (element){
 			ymainaxis = -1;
 		}
 
+var allx='';
+var ally='';
 		var sigdigs = String(currx).length + 3;
 		//VERTICAL LINES
 		for(i = 0; i < this.maxgridlines.x; i++) {
@@ -471,6 +681,8 @@ function JSgCalc (element){
 					if (xpos - xtextwidth * 0.5 < 0)
 						xpos = xtextwidth * 0.5 + 1;
 				this.ctx.fillText(currx, xpos, xmainaxis);
+allx=allx+currx+";";
+
 			}
 
 			currx += this.xgridscale;
@@ -478,6 +690,12 @@ function JSgCalc (element){
 		}
 		this.ctx.textAlign = "right";
 		sigdigs = String(curry).length + 3;
+//alert(allx);
+allx=allx+";";
+allx=allx.replace(';;', '')
+//var n=allx.length;
+document.getElementById("Xsc").value = allx;
+localStorage.setItem('variableX', allx);
 
 		//HORIZONTAL LINES
 		for(i = 0; i < this.maxgridlines.y; i++) {
@@ -511,9 +729,15 @@ function JSgCalc (element){
 				if (ymainaxis == -1)
 					xaxispos = ytextwidth + 1;
 				this.ctx.fillText(curry, xaxispos, ypos + 3);
+ally=ally+curry+";";
 			}
 			curry += this.ygridscale;
 		}
+ally=ally+";";
+ally=ally.replace(';;', '')
+document.getElementById("Ysc").value = ally;
+localStorage.setItem('variableY', ally);
+
 		//Draw the axis
 		if(xaxis)
 			this.ctx.fillRect (xaxis-0.5, 0, 1, this.height);
@@ -753,18 +977,54 @@ function JSgCalc (element){
 	};
 
 	this.resetZoom = function() {
-		this.currCoord = {x1 : -5 * (this.width / this.height), y1 : -5, x2 : 5 * (this.width / this.height), y2 : 5};
+		this.currCoord = {x1 : -15 * (this.width / this.height), y1 : -15, x2 : 15 * (this.width / this.height), y2 : 15};
 		this.startCoord = this.copyCoord(this.currCoord);
 		this.draw();
 	};
+
+	this.resetZoom2 = function() {
+var sca = document.getElementById("sca").value
+var nsca = parseFloat(sca);
+		this.currCoord = {x1 : -nsca * (this.width / this.height), y1 : -nsca, x2 : nsca * (this.width / this.height), y2 : nsca};
+		this.startCoord = this.copyCoord(this.currCoord);
+		this.draw();
+	};
+
+
+	this.resetZoom3 = function() {
+var sca1 = document.getElementById("sca1").value
+var sca2 = document.getElementById("sca2").value
+var sca3 = document.getElementById("sca3").value
+var sca4 = document.getElementById("sca4").value
+
+var nsca1 = parseFloat(sca1);
+var nsca2 = parseFloat(sca2);
+var nsca3 = parseFloat(sca3);
+var nsca4 = parseFloat(sca4);
+		this.currCoord = {x1 : nsca1 * (this.width / this.height), y1 : nsca3, x2 : nsca2 * (this.width / this.height), y2 : nsca4};
+		this.startCoord = this.copyCoord(this.currCoord);
+		this.draw();
+	};
+
+ 
+
+//var textFrom2 = document.getElementById("target").value
+//textArray = textFrom2.split("\n");
+//var temps=['0.1','4'];
+//var xval =1;
+//var yval = 2;
+//for(var ii=0; ii<textArray.length;ii++) {
+//temps= textArray[ii].split("\t");
+//xval =parseFloat(temps[0]);
 
 	this.initCanvas = function() {
 		if (this.graph.getContext){
 			this.ctx = this.graph.getContext('2d');
 			//this.ctx.height = 953;
 			$("#graph_wrapper").width($("#graph_wrapper").width() - $("#sidewrapper").innerWidth() - $("#toolbar").innerWidth());
+			//this.resizeGraph(500, 500);
 			this.resizeGraph($("#graph_wrapper").innerWidth(), $("#graph_wrapper").height());
-			this.currCoord = {x1 : -5 * (this.width / this.height), y1 : -5, x2 : 5 * (this.width / this.height), y2 : 5};
+			this.currCoord = {x1 : -15 * (this.width / this.height), y1 : -15, x2 : 15 * (this.width / this.height), y2 : 15};
 			this.startCoord = this.copyCoord(this.currCoord);
 			jsgui.evaluate();
 
@@ -789,6 +1049,7 @@ function JSgCalc (element){
 					$("#graph_wrapper").width($("#wrapper").width() - $("#sidewrapper").innerWidth() - $("#toolbar").innerWidth());
 				else
 					$("#graph_wrapper").width($("#wrapper").width() - $("#toolbar").innerWidth());
+				//self.resizeGraph(500, 500);
 				self.resizeGraph($("#graph_wrapper").width(), $("#graph_wrapper").height());
 			});
 		}

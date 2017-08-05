@@ -64,6 +64,7 @@ function JSgui() {
 		$("#hideSidebar").hide();
 		$("#showSidebar").show();
 		$("#toolbar").css("right", "0px");
+		//jsgcalc.resizeGraph(500, 500);
 		jsgcalc.resizeGraph($("#wrapper").width() - widthPlusPadding("#toolbar"), $("#wrapper").height());
 
 		this.setTool(this.currtool);
@@ -74,6 +75,7 @@ function JSgui() {
 		$("#hideSidebar").show();
 		$("#showSidebar").hide();
 		$("#toolbar").css("right", "282px");
+		//jsgcalc.resizeGraph(500, 500);
 		jsgcalc.resizeGraph($("#wrapper").width() - $("#sidewrapper").width() - widthPlusPadding("#toolbar"), $("#wrapper").height());
 
 		this.setTool(this.currtool);
@@ -112,8 +114,80 @@ function JSgui() {
 			this.updateInputData();
 			var newcolor = this.findAvailableColor();
 			this.lineColors[newcolor] = this.currInput;
+			
+			if(jsgcalc.lines.length > 1) {
 			jsgcalc.lines.push({
 				equation: "",
+				color: newcolor
+			});
+			}
+
+			if(jsgcalc.lines.length == 1) {
+			jsgcalc.lines.push({
+				equation: "",
+				color: newcolor
+			});
+			}
+
+			if(jsgcalc.lines.length == 0) {
+			jsgcalc.lines.push({
+				equation: "0",
+				color: newcolor
+			});
+			}
+
+			this.currInput++;
+			this.refreshInputs();
+		}
+		else {
+			alert("Sorry, there is a limit of 10 equations for this app!");
+			console.log("Tried to add too many equations!");
+		}
+	}
+
+	this.addInputS = function() {
+		if(jsgcalc.lines.length < 11) {
+			this.updateInputData();
+			var newcolor = this.findAvailableColor();
+			this.lineColors[newcolor] = this.currInput;
+			jsgcalc.lines.push({
+				equation: "cos(x)",
+				color: newcolor
+			});
+			this.currInput++;
+			this.refreshInputs();
+		}
+		else {
+			alert("Sorry, there is a limit of 10 equations for this app!");
+			console.log("Tried to add too many equations!");
+		}
+	}
+
+	this.addInputZ = function() {
+		if(jsgcalc.lines.length < 11) {
+			this.updateInputData();
+			var newcolor = this.findAvailableColor();
+			this.lineColors[newcolor] = this.currInput;
+			jsgcalc.lines.push({
+				equation: "0",
+				color: newcolor
+			});
+			this.currInput++;
+			this.refreshInputs();
+		}
+		else {
+			alert("Sorry, there is a limit of 10 equations for this app!");
+			console.log("Tried to add too many equations!");
+		}
+	}
+
+	this.addInputP = function() {
+		if(jsgcalc.lines.length < 11) {
+			this.updateInputData();
+			var newcolor = this.findAvailableColor();
+			this.lineColors[newcolor] = this.currInput;
+			jsgcalc.lines.push({
+				equation: "x^2",
 				color: newcolor
 			});
 			this.currInput++;
@@ -198,6 +272,7 @@ function JSgui() {
 			}
 		}
 	}
+
 
 }
 

@@ -56,6 +56,10 @@ body { font-family: "Open Sans", sans-serif; font-size: 9pt;}
 #settings_button img { height: 100%; opacity: 0.5;}
 #settings { display: none; margin-bottom: 20px;}
 
+#settings_button {padding: 5px 6px; height: 16px; vertical-align: bottom;}
+#settings_button img { height: 100%; opacity: 0.5;}
+#settings2 { display: none; margin-bottom: 20px;}
+
 #graph_wrapper { position: absolute; top: 0px; left: 0px; height: 100%; width: 100%; z-index: 2; margin-right: 250px;}
 #graph_wrapper:hover { cursor: crosshair;}
 #graph_wrapper:active { cursor: move;}
@@ -66,10 +70,6 @@ h1 { margin: 0; padding: 0;}
 .options_list { line-height: 25px;}
 .option { color: #666; border: 1px solid #BBB; background: #E7E7E7; border-radius: 5px; padding: 1px 4px;}
 .option_selected { font-weight: bold; color: #000; background: #F6F6F6; border: 1px solid #999; }
-
-textarea { border: 1px dashed #56ADFF; outline: none; resize: none; overflow: hidden; white-space: nowrap; font-family: 'times new roman' ,georgia, serif;
-	font-size: 14pt; min-width: 1em; height: 1em; padding: 0.2em}
-textarea:focus { border: 1px solid #56ADFF;}
 
 a { text-decoration: none;}
 a:hover { text-decoration: none;}

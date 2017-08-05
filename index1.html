@@ -7,6 +7,396 @@ type=text/css rel=stylesheet>
 type=text/javascript>
 </SCRIPT>
 
+<script>
+//alert('8');
+
+window.onload=init; 
+
+function init() {
+onlyL3(); 
+redC2();
+}
+
+</script>
+
+<script>
+function changeText()
+{
+ document.getElementById('boldStuff').innerHTML = document.getElementById('inputTextToSave').value;
+}
+
+function changeT2()
+{
+
+var tW='500';
+var tH='500';
+var x350='100';
+var y="100";
+
+
+var ach="<svg version='1.1' width="+tW+" height="+tH+" xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>";
+
+ach=ach+"\n"+"<polyline fill='none' stroke='#008000' stroke-width='0.5' points='";
+
+ach=ach+"200,208 288.8889,232 377.7778,272 466.6667,328 555.5556,400 644.4444,488 733.3333,592 822.2222,712 911.1111,848 1000,1000"+ "' />";
+
+ach=ach+"\n"+"<text x='"+x350+"' y='"+y+"' fill='black' font-family='Arial' font-size='10'>"+x350+"</text>";
+
+
+ach=ach+"\n"+"</svg>";
+
+
+//document.getElementById('boldStuff').innerHTML = ach;//
+document.getElementById('inputTextToSave').value=ach;
+}
+
+function polysvg(poly, ox, oy)
+{
+
+var tW='500';
+var tH='500';
+var x350='100';
+var y="100";
+
+
+var ach="<svg version='1.1' width='"+tW+"' height='"+tH+"' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>";
+
+ach=ach+"\n"+"<polyline fill='none' stroke='#008000' stroke-width='0.5' points='";
+
+ach=ach+poly+ "' />";
+
+//ach=ach+"\n"+"<text x='"+x350+"' y='"+y+"' fill='black' font-family='Arial' font-size='10'>"+x350+"</text>";
+
+var textArray = ox.split("\n");
+var textArray2 = oy.split("\n");
+var Tneo='';
+var TneoA='';
+
+var Yneo='';
+var YneoA='';
+
+var temp=0.1;
+var temp2=0.1;
+var temps=['0.1','4'];
+var tBak=['0.1','4'];
+
+//OX shift (down)=<textarea id="y330" name="y330" cols="10" rows="1">0</textarea>
+
+var OXsh=document.getElementById('y330').value
+
+ach=ach+"\n"+"<polyline fill='none' stroke='#008000' stroke-width='0.5' points='";
+ach=ach+"0"+","+OXsh+" "+"500"+","+OXsh+"' />";
+
+var OYsh=document.getElementById('x330').value
+
+ach=ach+"\n"+"<polyline fill='none' stroke='#008000' stroke-width='0.5' points='"+OYsh+",";
+ach=ach+"0"+" "+OYsh+","+"500"+"' />";
+
+var nOXsh1=parseFloat(OXsh)+10;
+var OXsh1=nOXsh1.toString();
+
+var nOYsh1=parseFloat(OYsh)+10;
+var OYsh1=nOYsh1.toString();
+
+//alert(OXsh+";"+OYsh+";"+OXsh1+";"+OYsh1);
+
+var pprov=0;
+
+for(var i=0; i<textArray.length;i++) 
+{
+temps= textArray[i].split("\t");
+//temp=(parseFloat(temps[1])-parseFloat(tBak[1]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+pprov=parseFloat(temps[0])*parseFloat(temps[1]);
+
+//temp2=(parseFloat(temps[2])-parseFloat(tBak[2]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+//Tneo=Tneo+textArray[i]+'\t'+temp+'\t'+temp2+'\n';
+//Tneo=Tneo+temps[0]+';';
+//TneoA=TneoA+temps[1]+';';
+
+if (pprov) {
+ach=ach+"\n"+"<polyline fill='none' stroke='#008000' stroke-width='0.5' points='";
+ach=ach+temps[1]+","+OXsh+" "+temps[1]+","+OXsh1+"' />";
+ach=ach+"\n"+"<text x='"+temps[1]+"' y='"+OXsh1+"' fill='black' font-family='Arial' font-size='10'>"+temps[0]+"</text>";
+}
+
+//
+
+//tBak=temps;
+}
+
+for(var i=0; i<textArray2.length;i++) 
+{
+temps= textArray2[i].split("\t");
+
+//<text x='176.66666666667' y='0.0001' fill='black' font-family='Arial' font-size='10'>120</text>
+//<polyline fill='none' stroke='#008000' stroke-width='0.5' points='166.66666666667,0.0001 176.66666666667,0.0001' />
+
+ach=ach+"\n"+"<polyline fill='none' stroke='#008000' stroke-width='0.5' points='"+OYsh+",";
+ach=ach+temps[1]+" "+OYsh1+","+temps[1]+"' />";
+ach=ach+"\n"+"<text x='"+OYsh1+"' y='"+temps[1]+"' fill='black' font-family='Arial' font-size='10'>"+temps[0]+"</text>";
+//
+
+//tBak=temps;
+}
+
+
+ach=ach+"\n"+"</svg>";
+
+
+//document.getElementById('boldStuff').innerHTML = ach;//
+//document.getElementById('inputTextToSave').value=ach;
+return ach;
+}
+
+function xsvg(ox, oy)
+{
+
+var tW='500';
+var tH='500';
+var x350='100';
+var y="100";
+
+var textArray = ox.split("\n");
+var textArray2 = oy.split("\n");
+
+var Tneo='';
+var TneoA='';
+
+var Yneo='';
+var YneoA='';
+
+var temp=0.1;
+var temp2=0.1;
+var temps=['0.1','4'];
+var tBak=['0.1','4'];
+
+//var ach="1";
+var ach="<svg version='1.1' width="+tW+" height="+tH+" xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>";
+
+
+for(var i=0; i<textArray.length;i++) 
+{
+temps= textArray[i].split("\t");
+//temp=(parseFloat(temps[1])-parseFloat(tBak[1]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+//temp2=(parseFloat(temps[2])-parseFloat(tBak[2]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+//Tneo=Tneo+textArray[i]+'\t'+temp+'\t'+temp2+'\n';
+//Tneo=Tneo+temps[0]+';';
+//TneoA=TneoA+temps[1]+';';
+
+ach=ach+"\n"+"<polyline fill='none' stroke='#008000' stroke-width='0.5' points='";
+ach=ach+temps[1]+",428 "+temps[1]+",438' />";
+ach=ach+"\n"+"<text x='"+temps[1]+"' y='438.57142857143' fill='black' font-family='Arial' font-size='10'>"+temps[0]+"</text>";
+//
+
+//tBak=temps;
+}
+
+for(var i=0; i<textArray2.length;i++) 
+{
+temps= textArray2[i].split("\t");
+
+//<text x='176.66666666667' y='0.0001' fill='black' font-family='Arial' font-size='10'>120</text>
+//<polyline fill='none' stroke='#008000' stroke-width='0.5' points='166.66666666667,0.0001 176.66666666667,0.0001' />
+
+ach=ach+"\n"+"<polyline fill='none' stroke='#008000' stroke-width='0.5' points='166.66666666667,";
+ach=ach+temps[1]+" 176.66666666667,"+temps[1]+"' />";
+ach=ach+"\n"+"<text x='176.66666666667' y='"+temps[1]+"' fill='black' font-family='Arial' font-size='10'>"+temps[0]+"</text>";
+//
+
+//tBak=temps;
+}
+
+
+ach=ach+"\n"+"</svg>";
+
+//alert(Tneo+";;"+TneoA);
+//alert(ach);
+
+
+
+//ach=ach+poly+ "' />";
+
+//ach=ach+"\n"+"<text x='"+x350+"' y='"+y+"' fill='black' font-family='Arial' font-size='10'>"+x350+"</text>";
+
+
+//ach=ach+"\n"+"</svg>";
+
+
+//document.getElementById('boldStuff').innerHTML = ach;//
+//document.getElementById('inputTextToSave').value=ach;
+return ach;
+}
+
+
+
+function changeT5()
+{
+
+var tW='500';
+var tH='500';
+var x350='100';
+var y="100";
+var z=document.getElementById('fh').value;
+
+var ach="<svg version='1.1' width="+tW+" height="+tH+" xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>";
+
+ach=ach+"\n"+textPlus("100", "100", "100");
+ach=ach+"\n"+textPlus("200", "200", "200");
+ach=ach+"\n"+textPlus("300", "300", "300");
+
+//ach=ach+"\n"+"<polyline fill='none' stroke='#008000' stroke-width='0.5' points='"+document.getElementById('frameheight').value+"' />";
+ach=ach+"\n"+"<polyline fill='none' stroke='#008000' stroke-width='0.5' points='"+z+"' />";
+
+ach=ach+"\n"+"</svg>";
+
+
+document.getElementById('inputTextToSave').value=ach;
+}
+
+function changeT3()
+{
+
+var tW='1000';
+var tH='1000';
+var x350='100';
+var y="100";
+
+
+var ach="<svg version='1.1' width="+tW+" height="+tH+" xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>";
+
+//ach=ach+"\n"+"<polyline fill='none' stroke='#008000' stroke-width='0.5' points='";
+
+//ach=ach+"200,208 288.8889,232 377.7778,272 466.6667,328 555.5556,400 644.4444,488 733.3333,592 822.2222,712 911.1111,848 //1000,1000"+ "' />";
+
+ach=ach+"\n"+"<text x='"+x350+"' y='"+y+"' fill='black' font-family='Arial' font-size='10'>"+x350+"</text>";
+
+
+ach=ach+"\n"+"</svg>";
+
+
+//document.getElementById('boldStuff').innerHTML = ach;//
+document.getElementById('inputTextToSave').value=ach;
+}
+
+function alertText()
+{
+
+var tW=document.getElementById('fw').value;
+var tH=document.getElementById('fh').value;
+
+//var tW=document.getElementById('fw').value;
+var targ=document.getElementById('target').value;
+
+//alert (targ);
+
+//alert (tW+"!!!"+tH);
+
+
+var textArray = tW.split("\n");
+
+var Tneo='';
+var TneoA='';
+
+var Yneo='';
+var YneoA='';
+
+var temp=0.1;
+var temp2=0.1;
+var temps=['0.1','4'];
+var tBak=['0.1','4'];
+for(var i=0; i<textArray.length;i++) 
+{
+temps= textArray[i].split("\t");
+//temp=(parseFloat(temps[1])-parseFloat(tBak[1]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+//temp2=(parseFloat(temps[2])-parseFloat(tBak[2]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+//Tneo=Tneo+textArray[i]+'\t'+temp+'\t'+temp2+'\n';
+Tneo=Tneo+temps[0]+';';
+TneoA=TneoA+temps[1]+';';
+//tBak=temps;
+}
+///alert (Tneo+"!!!"+TneoA);
+
+//alert(smart3(Tneo, TneoA, 1));
+
+//////////////////////////////////
+var textArrayY = tH.split("\n");
+
+for(var i=0; i<textArrayY.length;i++) 
+{
+temps= textArrayY[i].split("\t");
+
+//localStorage.getItem('varOX');
+Yneo=Yneo+temps[0]+';';
+YneoA=YneoA+temps[1]+';';
+//tBak=temps;
+}
+//alert (Yneo+"!!!"+YneoA);
+
+//alert(smart3(Yneo, YneoA, 0.005));
+
+//////////////////////////////////
+
+var textArrayT = targ.split("\n");
+
+var xyT='';
+var xyNEO='';
+
+var nOX=parseFloat(localStorage.getItem('varOX'));
+var nOY=parseFloat(localStorage.getItem('varOY'));
+
+var pprov=0;
+
+for(var i=0; i<textArrayT.length;i++) 
+{
+temps= textArrayT[i].split("\t");
+
+xyT=temps[nOX]+';'+temps[nOY];
+
+pprov=parseFloat(temps[nOX])*parseFloat(temps[nOY]);
+
+if (pprov) {
+//xyNEO=xyNEO+xyT+'!!';//getts2d(xyT,Tneo, Yneo, TneoA, YneoA)+'!!';
+xyNEO=xyNEO+getts2d(xyT,Tneo, Yneo, TneoA, YneoA)+'\n';
+//tBak=temps;
+}
+
+}
+
+//alert(xyT+"\n"+Tneo+"\n"+Yneo+"\n"+TneoA+"\n"+YneoA+"\n\n\n"+"!!!");
+
+xyNEO = xyNEO.replace(/;/g, ','); 
+
+xyNEO = polysvg(xyNEO, tW, tH);
+
+//alert (xyNEO);
+
+document.getElementById('inputTextToSave').value=xyNEO;
+
+//var tests=getts2d("1;14", "1;2;3;4;5", "12;14;16;18;20", "100;200;300;400;500", "1;2;3;4;5");
+//alert(tests);
+
+    //document.getElementById("target").value = Tneo;
+
+
+//document.getElementById('boldStuff').innerHTML = ach;//
+//document.getElementById('inputTextToSave').value=ach;
+}
+
+function alertOX()
+{
+var tW=document.getElementById('fw').value;
+var tH=document.getElementById('fh').value;
+
+var tW2=xsvg(tW, tH);
+//alert(xsvg(tW));
+
+document.getElementById('inputTextToSave').value=tW2;
+
+}
+
+
+</script>
+
 <script src="js/jquery-1.12.0.min.js"></script>
         <script src="out2.js"></script>
         <script src="out3.js"></script>
@@ -14,65 +404,69 @@ type=text/javascript>
 </HEAD>
 <body>
 
-            <textarea id="inputTextToSave" cols="20" rows="10"></textarea>
-Select a File to Load:
-<input type="file" id="fileToLoad"onchange="loadCSVtext()">
+<SCRIPT type=text/javascript>
+window.onload=init;
+function init() {
+//////////////////////////////alert('User data loaded');
+//alert('varOX');
+//alert('varOY');
+var ab=localStorage.getItem('variableName'); 
+document.getElementById('target').value=ab;
+}
+</SCRIPT>
 
-<br>
+<!-- /Yandex.Metrika counter
+<button onclick="var ab=localStorage.getItem('variableName'); document.getElementById('target').value=ab;">User Data</button>
+        <input type="button" value="getRECT" onclick="getRECT();">
+
+<select id="selectX" size="5" multiple="multiple" onclick="alertOptionSelected(); alert('7'); getRECT();">
+</select>
+<select id="sel2" size="5" multiple="multiple" onclick="alertOptionSelected(); getRECT();">
+</select>
+
+<textarea id="scaR" name="scaR" cols="50" rows="4" WRAP = "off" oninput="alert('5'); getRECT();">5</textarea>
+ -->
+
+
+
 <h3>
-<div id="title">Prepare CSV (<font color="red">click 'Next>>' after preparing</font> ) 
-Нажми 'Next>>' после: 
+          <div id="title"><font color="red"> #Graphr #multiplot #csv2svg #github49 #d3js</font>
+	</div>
+<a href="d3js.html"><img src="images/d3js.png" alt="d3js" title="d3js"/></a>
+ 
+<button onclick="window.location.href='d3js.html'">#d3js</button>
+        </h3>
+<h3>
+          <div id="title2"><font color="red">Click from 'Scale' to 'Save SVG'</font>Нажмите от 'Scale' до 'Save SVG' </div>
+        </h3>
+<button onclick="var ab=localStorage.getItem('variableX'); var cd=document.getElementById('tW2').value; var cd0=document.getElementById('tW1').value; document.getElementById('fw').value=props(ab, cd0+';'+cd); ab=localStorage.getItem('variableY'); cd=document.getElementById('tH2').value; var cd0=document.getElementById('tH1').value; document.getElementById('fh').value=props(ab, cd+';'+cd0); ab=localStorage.getItem('variableX'); cd=document.getElementById('tW1').value+';'+document.getElementById('tW2').value; var e=proZ(ab,cd); Xdu(e, document.getElementById('tW1').value); ab=localStorage.getItem('variableY'); cd=document.getElementById('tH2').value+';'+document.getElementById('tH1').value; e=proZ(ab,cd); Ydu(e, document.getElementById('tH1').value);">Scale</button>
+
+<input type='button' onclick='alertText()' value='Output SVG'/>
+
+<input type='button' onclick='changeText()' value='DRAW'/>
+
+<button onclick="saveTextAsFile()">Save SVG</button>
+
 <br>
--выбора и открытия файла
+<b id='boldStuff'>SVG</b> 
 <br>
--нажатия 'Calculate data'
-<br>
-<button onclick="var cd=document.getElementById('target').value; localStorage.setItem('variableName', document.getElementById('target').value); localStorage.setItem('varOX', document.getElementById('xBox').value); localStorage.setItem('varOY', document.getElementById('yBox').value); localStorage.setItem('varCols', document.getElementById('mBox').value); localStorage.setItem('variableName', document.getElementById('target').value); var ab=localStorage.getItem('variableName'); window.location.href='indexResult.html'">Next>></button>
-<br>
-<font color="red"> #Graphr #multiplot #csv2svg #github49 #d3js</font>
 	
-</div>
-</h3>
+Plot shift (right)=<textarea id="tW1" name="tW1" cols="10" rows="1">0</textarea>
+Width=<textarea id="tW2" name="tW2" cols="10" rows="1">500</textarea>
 
-From x=<textarea id="textFrom" cols="10" rows="1">1</textarea>
-To x=<textarea id="textTo" cols="10" rows="1">10</textarea>
-Step <textarea id="textStep" cols="10" rows="1">0.1</textarea>
-f(x)=<textarea id="tCare" cols="20" rows="1">x^2; sin(x)</textarea>
-
-<button onclick="CARE()">Calculate data</button><br>
-Cols X/Y/Max:
-<script>
-var sele="";
-        document.write('<select name="xBox" id="xBox" style="width : 50" onclick="onlycols()">');
-for(var i=0; i<8;i++) 
-{
-if (i==0) {sele="' selected>"} else {sele="'>"}
-	document.write("<option value='"+i+sele+i+"</option>");
-}
-document.write('</select>');
-
-        document.write('<select name="yBox" id="yBox" style="width : 50">');
-for(var i=0; i<8;i++) 
-{
-if (i==2) {sele="' selected>"} else {sele="'>"}
-	document.write("<option value='"+i+sele+i+"</option>");
-}
-document.write('</select>');
-
-        document.write('<select name="mBox" id="mBox" style="width : 50">');
-for(var i=0; i<8;i++) 
-{
-if (i==2) {sele="' selected>"} else {sele="'>"}
-	document.write("<option value='"+i+sele+i+"</option>");
-}
-document.write('</select>');
-
-</script>
-
-<button onclick="DTMA()">Diff (DTMA)</button>
-<button onclick="loadARR()">Refresh Min/Max</button>
-<br><br>
-
+<br>
+Plot shift (down)=<textarea id="tH1" name="tH1" cols="10" rows="1">0</textarea>
+Height=<textarea id="tH2" name="tH2" cols="10" rows="1">500</textarea>
+<br>
+OX shift (down)=<textarea id="y330" name="y330" cols="10" rows="1">0</textarea>
+OX tick (height)=<textarea id="y340" name="y340" cols="10" rows="1">10</textarea>
+OX sign (down)=<textarea id="y350" name="y350" cols="10" rows="1">10</textarea>
+<br>
+OY shift (right)=<textarea id="x330" name="x330" cols="10" rows="1">0</textarea>
+OY tick (width)=<textarea id="x340" name="x340" cols="10" rows="1">10</textarea>
+OY sign (right)=<textarea id="x350" name="x350" cols="10" rows="1">10</textarea>
+<br>
+<br>
 <textarea id="target" name="target" cols="80" rows="25" onclick="this.value = this.value.replace(/[;]/g, '\t');this.value = this.value.replace(/[ ]/g, '\t');this.value = this.value.replace(' ', '\t')">B	Jr	Ji	Js	Jp	Jr	Jr(b-a)	dJr	dJr(b-a)
 mT	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg/mT	mA*m^2/kg/mT
 0	0	9.33E-05	0	9.33E-05	0	5.98E-07	0	0
@@ -3079,10 +3473,153 @@ mT	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg/mT	mA*m
 -499.5	-1.03E-03	-2.55E-02	-2.05E-02	-4.99E-03	0	0	0	0
 
 </textarea>
+<br><br>	OX parameters:
+<script>
+var sele="";
+        document.write('<select name="fwBox" id="fwBox" style="width : 50" onclick="onlycols()">');
+for(var i=0; i<8;i++) 
+{
+if (i==0) {sele="' selected>"} else {sele="'>"}
+document.write("<option value='"+i+sele+i+"</option>");
+}
+document.write('</select>');
+
+        document.write('<select name="E1X" id="E1X" style="width : 50">');
+for(var i=0; i<8;i++) 
+{
+if (i==0) {sele="' selected>"} else {sele="'>"}
+document.write("<option value='"+i+sele+i+"</option>");
+}
+document.write('</select>');
+
+document.getElementById('fwBox').value=localStorage.getItem('varOX');
+
+</script>
+<br><br>
+<textarea name="framewidth" id="fw" style="height:300px; width:400px;" onclick="this.value = this.value.replace(/[;]/g, '\t');this.value = this.value.replace(/[ ]/g, '\t')">100	100
+200	200
+300	300
+400	470
+500	500
+600	600
+700	700
+800	800
+900	900
+1000	1000</textarea></p>
+OY parameters:
+
+<script>
+var sele="";
+        document.write('<select name="fhBox" id="fhBox" style="width : 50" onclick="onlycols()">');
+for(var i=0; i<8;i++) 
+{
+if (i==1) {sele="' selected>"} else {sele="'>"}
+	document.write("<option value='"+i+sele+i+"</option>");
+}
+document.write('</select>');
+
+        document.write('<select name="E1Y" id="E1Y" style="width : 50">');
+for(var i=0; i<8;i++) 
+{
+if (i==1) {sele="' selected>"} else {sele="'>"}
+	document.write("<option value='"+i+sele+i+"</option>");
+}
+document.write('</select>');
+
+document.getElementById('fhBox').value=localStorage.getItem('varOY');
+
+</script>
+<br><br>
+<textarea name="frameheight" id="fh" style="height:300px; width:400px;" onclick="this.value = this.value.replace(/[;]/g, '\t');this.value = this.value.replace(/[ ]/g, '\t')">50	100
+100	200
+150	300
+200	400
+250	560
+300	600
+350	700
+400	800
+450	900
+500	1000</textarea></p>
 
   <script type="text/javascript" src="XY.js"></script>
 
+
+
+<input type='button' onclick='changeT2()' value='Change2'/>
+
+<input type='button' onclick='changeT3()' value='Change3'/>
+
+<input type='button' onclick='alert(textPlus("1234", "qwerty", "zxc"))' value='Ch4'/>
+<input type='button' onclick='alert(smart3("1;2;3;4;5", "10;20;30;40;50", 4.2)); alert(smart3("1;2;3;4;5", "10;20;30;40;50", 0.2)); alert(smart3("1;2;3;4;5", "10;20;30;40;50", 7))' value='Cha45'/>
+
+<input type='button' onclick='alert("12345")' value='Change45'/>
+
+<input type='button' onclick='changeT5()' value='Change5'/>
+
+
+<input type='button' onclick='alertOX()' value='AlertOX'/>
 <br>
+
+<table>
+    <tr><td>Text to Save:</td></tr>
+    <tr>
+        <td colspan="3">
+            <textarea id="inputTextToSave" cols="80" rows="25"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>Filename to Save As:</td>
+        <td><input id="inputFileNameToSaveAs"></input></td>
+        <td><button onclick="saveTextAsFile()">Save Text to File</button></td>
+    </tr>
+    <tr>
+        <td>Select a File to Load:</td>
+        <td><input type="file" id="fileToLoad"></td>
+        <td><button onclick="loadFileAsText()">Load Selected File</button><td>
+    </tr>
+</table>
+ 
+<script type="text/javascript">
+ 
+function saveTextAsFile()
+{
+    var textToSave = document.getElementById("inputTextToSave").value;
+    var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+    var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+    var fileNameToSaveAs = 'Plot.svg';//''document.getElementById("inputFileNameToSaveAs").value;
+ 
+    var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "Download File";
+    downloadLink.href = textToSaveAsURL;
+    downloadLink.onclick = destroyClickedElement;
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+ 
+    downloadLink.click();
+}
+ 
+function destroyClickedElement(event)
+{
+    document.body.removeChild(event.target);
+}
+ 
+function loadFileAsText()
+{
+    var fileToLoad = document.getElementById("fileToLoad").files[0];
+ 
+    var fileReader = new FileReader();
+    fileReader.onload = function(fileLoadedEvent) 
+    {
+        var textFromFileLoaded = fileLoadedEvent.target.result;
+        document.getElementById("inputTextToSave").value = textFromFileLoaded;
+    };
+    fileReader.readAsText(fileToLoad, "UTF-8");
+}
+ 
+</script>
+ 
+
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function (d, w, c) {
@@ -3111,6 +3648,5 @@ mT	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg	mA*m^2/kg/mT	mA*m
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/42436314" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
-<br>
 
 </body>

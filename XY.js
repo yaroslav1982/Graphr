@@ -1,4 +1,10 @@
 var textArray=['1234','5678'];
+function smartABS(x1,y1)
+{
+ var z1=x1*x1+y1*y1;
+ z1=Math.sqrt(z1);
+return z1;
+}
 
 function saveTextAsFile()
 {
@@ -95,7 +101,172 @@ temp2=(parseFloat(textArray[4]));
 //////////////////////////////////////////////////alert(s);
 }
 
+// Замыкание
+(function() {
+  /**
+   * Корректировка округления десятичных дробей.
+   *
+   * @param {String}  type  Тип корректировки.
+   * @param {Number}  value Число.
+   * @param {Integer} exp   Показатель степени (десятичный логарифм основания корректировки).
+   * @returns {Number} Скорректированное значение.
+   */
+  function decimalAdjust(type, value, exp) {
+    // Если степень не определена, либо равна нулю...
+    if (typeof exp === 'undefined' || +exp === 0) {
+      return Math[type](value);
+    }
+    value = +value;
+    exp = +exp;
+    // Если значение не является числом, либо степень не является целым числом...
+    if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+      return NaN;
+    }
+    // Сдвиг разрядов
+    value = value.toString().split('e');
+    value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+    // Обратный сдвиг
+    value = value.toString().split('e');
+    return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+  }
+
+  // Десятичное округление к ближайшему
+  if (!Math.round10) {
+    Math.round10 = function(value, exp) {
+      return decimalAdjust('round', value, exp);
+    };
+  }
+  // Десятичное округление вниз
+  if (!Math.floor10) {
+    Math.floor10 = function(value, exp) {
+      return decimalAdjust('floor', value, exp);
+    };
+  }
+  // Десятичное округление вверх
+  if (!Math.ceil10) {
+    Math.ceil10 = function(value, exp) {
+      return decimalAdjust('ceil', value, exp);
+    };
+  }
+})();
+
 function DTMA()
+{
+ var s=document.getElementById("target").value;
+var textArray = s.split("\n");
+var Tneo='';
+var temp=0.1;
+var temp2=0.1;
+var temp3=0.1;
+var temp4=0.1;
+var x=new Array(3000);
+var temps=['0.1','4'];
+var tBak=['0.1','4'];
+var nako='';
+var nmax=0; var Tmax=0; var Tnako=0; var nakomax=1000;
+var newNumber0=0;
+var newNumber1=0;
+var d1=0;
+var d2=0;
+
+for(var i=1; i<textArray.length;i++) 
+{
+temps= textArray[i].split("\t");
+
+
+temp=(parseFloat(temps[1])-parseFloat(tBak[1]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+x[i]=temp;
+temp=Math.round(temp*100000000)/100000000;
+temp2=(parseFloat(temps[2])-parseFloat(tBak[2]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+temp2=Math.round(temp2*100000000)/100000000;
+temp3=parseFloat(temps[0]);
+if (i>2000) {temp3=0-temp3; temp=temp-x[i-2000];} // 
+Tneo=Tneo+textArray[i]+'\t'+temp+'\t'+temp2+'\t'+temp3+'\n';
+
+newNumber0=parseFloat(temps[0]);//xx[j].push(newNumber0);
+newNumber1=temp2; //parseFloat(temps[2]);//yy[j].push(newNumber1);
+if (newNumber1>nmax && newNumber1<1000000000 && i<1001) {nmax=newNumber1; Tmax=i;}
+if ((i%100)==0){
+nako=nako+";"+nmax.toString(); 
+if (newNumber1>nmax && newNumber1<1000000000 && i<1001) {nmax=newNumber1; Tmax=i;}
+if (nakomax>nmax && nakomax<1000000000 && nmax!==0 && i<1001) {nakomax=nmax; Tnako=Tmax;}
+nmax=0;}
+
+tBak=temps;
+}
+
+//alert(nako[j]); 
+
+/////////////////////////////////
+/////////////alert(nakomax[1].toString()+";"+Tnako[1].toString()+";"+ik.toString());
+//alert(nakomax[1].toString()+";"+Tnako[1].toString()+";"+ik.toString());
+var n1=Tnako-50; var n2=Tnako+50; 
+//alert(textArray[Tnako[1]-10]);alert(textArray[Tnako[1]+10]);
+newNumber1=0
+for(var i=n1; i<n2;i++) {
+temps= textArray[i].split("\t");
+newNumber0=parseFloat(temps[2]);
+newNumber1=newNumber1+newNumber0;
+}
+newNumber1=newNumber1/100;
+temps= textArray[Tnako].split("\t");
+newNumber0=parseFloat(temps[0]);
+//alert(newNumber1.toString()+";"+newNumber0.toString());
+var x1=newNumber0; var y1=newNumber1; 
+
+n1=950-50; n2=950+50; 
+newNumber1=0
+for(var i=n1; i<n2;i++) {
+temps= textArray[i].split("\t");
+newNumber0=parseFloat(temps[2]);
+newNumber1=newNumber1+newNumber0;
+}
+newNumber1=newNumber1/100;
+temps= textArray[950].split("\t");
+
+newNumber0=parseFloat(temps[0]);
+var x2=newNumber0; var y2=newNumber1; 
+var k1=(y2-y1)/(x2-x1);
+var k2=k1*500
+//alert(newNumber1.toString()+";"+newNumber0.toString()+";"+k2.toString());
+
+/////////////////////////////////
+//alert(nakomax.toString()+";"+Tnako.toString()); //+";"+j.toString());
+
+
+//2>//////////////////
+tBak=['0.1','4'];
+Tneo='';
+for(var i=1; i<textArray.length;i++) 
+{
+temps= textArray[i].split("\t");
+
+
+temp=(parseFloat(temps[1])-parseFloat(tBak[1]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+x[i]=temp;
+temp=Math.round(temp*100000000)/100000000;
+temp2=(parseFloat(temps[2])-parseFloat(tBak[2]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+temp2=Math.round(temp2*100000000)/100000000;
+temp3=parseFloat(temps[0]);
+
+temp4=parseFloat(temps[2])-k1*temp3;
+
+d1=temp;
+d2=0;
+if (i>2000) {temp3=0-temp3; temp=temp-x[i-2000]; d1=0; d2=temp;} //
+
+ 
+Tneo=Tneo+textArray[i]+'\t'+temp+'\t'+temp2+'\t'+temp3+'\t'+temp4+'\t'+d1+'\t'+d2+'\n';
+tBak=temps;
+}
+
+//2<//////////////////
+    document.getElementById("target").value = Tneo;
+
+//////////////////////////////////////////////////alert(s);
+}
+
+function DTMA3()
 {
  var s=document.getElementById("target").value;
 var textArray = s.split("\n");
@@ -108,13 +279,63 @@ for(var i=1; i<textArray.length;i++)
 {
 temps= textArray[i].split("\t");
 temp=(parseFloat(temps[1])-parseFloat(tBak[1]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+temp=Math.round(temp*100000000)/100000000;
 temp2=(parseFloat(temps[2])-parseFloat(tBak[2]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+temp2=Math.round(temp2*100000000)/100000000;
 Tneo=Tneo+textArray[i]+'\t'+temp+'\t'+temp2+'\n';
 tBak=temps;
 }
     document.getElementById("target").value = Tneo;
+}
 
-//////////////////////////////////////////////////alert(s);
+function DTMA2()
+{
+ var s=document.getElementById("tar0").value;
+var textArray = s.split("\n");
+var Tneo='';
+var temp=0.1;
+var temp2=0.1;
+var temps=['0.1','4'];
+var tBak=['0.1','4'];
+for(var i=1; i<textArray.length;i++) 
+{
+temps= textArray[i].split("\t");
+temp=(parseFloat(temps[1])-parseFloat(tBak[1]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+temp=Math.round(temp*100000000)/100000000;
+temp2=(parseFloat(temps[2])-parseFloat(tBak[2]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+temp2=Math.round(temp2*100000000)/100000000;
+Tneo=Tneo+textArray[i]+'\t'+temp+'\t'+temp2+'\n';
+tBak=temps;
+}
+    document.getElementById("tar0").value = Tneo;
+}
+
+function DJIn()
+{
+ var s=document.getElementById("target").value;
+var textArray = s.split("\n");
+var Tneo='';
+var xyzN='';
+var diin='';
+var temp=0.1;
+var temp2=0.1;
+var temps=['0.1','4'];
+var tBak=['0.1','4'];
+for(var i=1; i<textArray.length;i++) 
+{
+temps= textArray[i].split("\t");
+//temp=(parseFloat(temps[1])-parseFloat(tBak[1]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+//temp=Math.round(temp*100000000)/100000000;
+//temp2=(parseFloat(temps[2])-parseFloat(tBak[2]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+//temp2=Math.round(temp2*100000000)/100000000;
+//
+xyzN=temps[2]+';'+temps[3]+';'+temps[4]+';'+temps[5];
+diin=car2sphY(xyzN);
+//Tneo=Tneo+textArray[i]+'\t'+temps[2]+'\t'+temps[3]+'\t'+temps[4]+'\t'+temps[5]+'\n';
+Tneo=Tneo+textArray[i]+'\t'+diin+'\n';
+//tBak=temps;
+}
+    document.getElementById("target").value = Tneo;
 }
 
 function CARE()
@@ -192,9 +413,100 @@ var m22=n1(fhN);
 sOX.value=props(m222, W1+";"+WW);
 sOY.value=props(m22, H1+";"+HH);
 }
- 
-function loadCSVtext()
+
+function zapas(textarea)
 {
+
+var tf=document.getElementById('inputTextToSave').value; 
+
+var delim=";"
+
+var qx=nchar(tf, ";");
+var nsemi=qx;
+var qy=qx.toString();
+
+//alert('5');
+var wx=nchar(tf, ",");
+var ncomma=wx;
+if (wx>qx) {qx=wx; delim=","}
+var wy=wx.toString();
+
+//alert('5');
+var ex=nchar(tf, "\t");
+if (ex>qx) {qx=ex; delim="\t"}
+var ey=ex.toString();
+
+//alert('5');
+var rx=nchar(tf, " ");
+if (rx>qx) {qx=rx; delim=" "}
+var ry=rx.toString();
+
+
+//alert('5');
+
+var dede="semicolons="+qy+"\ncommas="+wy+"\ntabs="+ey+"\nspaces="+ry+"\ndelimeter=("+delim+")";
+
+document.getElementById("delimiters").value=dede;
+
+//alert('7');
+
+var cd=document.getElementById('inputTextToSave').value; 
+var str = cd.replace(/\n|\r\n|\r/g, ';;'); 
+//
+var str2 = str.replace(/\s{1,}/g, ';'); 
+//var str2 = str.replace(/\s{1,}/g, '\t'); 
+var str3 = cd.replace(/;{3,}/g, ';;'); 
+//var str4 = str3.replace(/\s/g, ''); 
+var str5 = str2.replace(/;{2,}/g, '\r\n'); 
+//var str6 = str5.replace(/;/g, ' '); 
+//
+//alert('8');
+
+var str7 = str5.replace(/;/g, '\t'); 
+
+//if(delim=",") {str7 = str5.replace(/,/g, '\t');}
+
+//alert(str5);
+
+var str8 = str5.replace(/,/g, '\t');
+
+document.getElementById(textarea).value=str7; ///5;
+
+if (delim==",") {document.getElementById(textarea).value=str8;}
+
+///
+//alert('look');
+
+var Tneo="";
+    textFrom2 = document.getElementById("inputTextToSave").value
+textArray = textFrom2.split("\n");
+for(var i=0; i<textArray.length;i++) 
+{
+textArray[i] = textArray[i].replace(/[;]/g, '\t');
+Tneo=Tneo+textArray[i]+'\n';
+}
+
+//    document.getElementById("usta2").value = Tneo;
+
+//var WW=document.getElementById('target').offsetWidth;
+//var HH=document.getElementById('target').offsetHeight;
+//var sOX = document.getElementById("fw");
+//var sOY = document.getElementById("fh");
+//fwN = document.getElementById('fwBox').value ;
+//fhN = document.getElementById('fhBox').value ;
+//var m222=n1(fwN);
+//var m22=n1(fhN);
+//alert(HH);
+//sOX.value=props(m222, "0;"+WW);
+//sOY.value=props(m22, "0;"+HH);
+
+}
+
+ 
+function loadCSV2()
+{
+//alert('5');
+
     var fileToLoad = document.getElementById("fileToLoad").files[0];
     var fileReader = new FileReader();
     fileReader.onload = function(fileLoadedEvent) 
@@ -203,19 +515,160 @@ function loadCSVtext()
         document.getElementById("inputTextToSave").value = textFromFileLoaded;
     };
     fileReader.readAsText(fileToLoad, "UTF-8");
+
+//alert('tfu');
 alert('File loaded');
+
+var tf=document.getElementById('inputTextToSave').value; 
+
+var delim=";"
+
+var qx=nchar(tf, ";");
+var nsemi=qx;
+var qy=qx.toString();
+
+//alert('5');
+var wx=nchar(tf, ",");
+var ncomma=wx;
+if (wx>qx) {qx=wx; delim=","}
+var wy=wx.toString();
+
+//alert('5');
+var ex=nchar(tf, "\t");
+if (ex>qx) {qx=ex; delim="\t"}
+var ey=ex.toString();
+
+//alert('5');
+var rx=nchar(tf, " ");
+if (rx>qx) {qx=rx; delim=" "}
+var ry=rx.toString();
+
+
+//alert('5');
+
+var dede="semicolons="+qy+"\ncommas="+wy+"\ntabs="+ey+"\nspaces="+ry+"\ndelimeter=("+delim+")";
+
+document.getElementById("delimiters").value=dede;
 
 var cd=document.getElementById('inputTextToSave').value; 
 var str = cd.replace(/\n|\r\n|\r/g, ';;'); 
 //
 var str2 = str.replace(/\s{1,}/g, ';'); 
+//var str2 = str.replace(/\s{1,}/g, '\t'); 
 var str3 = cd.replace(/;{3,}/g, ';;'); 
 //var str4 = str3.replace(/\s/g, ''); 
 var str5 = str2.replace(/;{2,}/g, '\r\n'); 
 //var str6 = str5.replace(/;/g, ' '); 
 //
 
-document.getElementById('target').value=str5; ///5;
+var str7 = str5.replace(/;/g, '\t'); 
+
+//if(delim=",") {str7 = str5.replace(/,/g, '\t');}
+
+//alert(str5);
+
+var str8 = str5.replace(/,/g, '\t');
+
+document.getElementById('usta2').value=str7; ///5;
+
+if (delim==",") {document.getElementById('usta2').value=str8;}
+
+///alert('look');
+
+var Tneo="";
+    textFrom2 = document.getElementById("inputTextToSave").value
+textArray = textFrom2.split("\n");
+for(var i=0; i<textArray.length;i++) 
+{
+textArray[i] = textArray[i].replace(/[;]/g, '\t');
+Tneo=Tneo+textArray[i]+'\n';
+}
+
+//    document.getElementById("usta2").value = Tneo;
+
+//var WW=document.getElementById('target').offsetWidth;
+//var HH=document.getElementById('target').offsetHeight;
+//var sOX = document.getElementById("fw");
+//var sOY = document.getElementById("fh");
+//fwN = document.getElementById('fwBox').value ;
+//fhN = document.getElementById('fhBox').value ;
+//var m222=n1(fwN);
+//var m22=n1(fhN);
+//alert(HH);
+//sOX.value=props(m222, "0;"+WW);
+//sOY.value=props(m22, "0;"+HH);
+
+}
+
+function loadCSVtext()
+{
+//alert('5');
+
+    var fileToLoad = document.getElementById("fileToLoad").files[0];
+    var fileReader = new FileReader();
+    fileReader.onload = function(fileLoadedEvent) 
+    {
+        var textFromFileLoaded = fileLoadedEvent.target.result;
+        document.getElementById("inputTextToSave").value = textFromFileLoaded;
+    };
+    fileReader.readAsText(fileToLoad, "UTF-8");
+
+//alert('tfu');
+alert('File loaded');
+
+var tf=document.getElementById('inputTextToSave').value; 
+
+var delim=";"
+
+var qx=nchar(tf, ";");
+var nsemi=qx;
+var qy=qx.toString();
+
+//alert('5');
+var wx=nchar(tf, ",");
+var ncomma=wx;
+if (wx>qx) {qx=wx; delim=","}
+var wy=wx.toString();
+
+//alert('5');
+var ex=nchar(tf, "\t");
+if (ex>qx) {qx=ex; delim="\t"}
+var ey=ex.toString();
+
+//alert('5');
+var rx=nchar(tf, " ");
+if (rx>qx) {qx=rx; delim=" "}
+var ry=rx.toString();
+
+
+//alert('5');
+
+var dede="semicolons="+qy+"\ncommas="+wy+"\ntabs="+ey+"\nspaces="+ry+"\ndelimeter=("+delim+")";
+
+document.getElementById("delimiters").value=dede;
+
+var cd=document.getElementById('inputTextToSave').value; 
+var str = cd.replace(/\n|\r\n|\r/g, ';;'); 
+//
+var str2 = str.replace(/\s{1,}/g, ';'); 
+//var str2 = str.replace(/\s{1,}/g, '\t'); 
+var str3 = cd.replace(/;{3,}/g, ';;'); 
+//var str4 = str3.replace(/\s/g, ''); 
+var str5 = str2.replace(/;{2,}/g, '\r\n'); 
+//var str6 = str5.replace(/;/g, ' '); 
+//
+
+var str7 = str5.replace(/;/g, '\t'); 
+
+//if(delim=",") {str7 = str5.replace(/,/g, '\t');}
+
+//alert(str5);
+
+var str8 = str5.replace(/,/g, '\t');
+
+document.getElementById('target').value=str7; ///5;
+
+if (delim==",") {document.getElementById('target').value=str8;}
 
 ///alert('look');
 
@@ -312,6 +765,123 @@ y=i.toExponential();
 return z;
 }
 
+
+function trioseq(fts)
+{
+var s1s=fts.split(";");
+var f1=s1s[0];
+var t1=s1s[1];
+var s1=s1s[3];
+var rr="";
+var vf = parseFloat(f1);
+//alert(f1);
+var vt = parseFloat(t1);
+//alert(t1);
+var vs = parseFloat(s1);
+//alert(s1);
+
+    for (var x = vf; x <= vt; x=x+vs) 
+	{
+	//y=kratnoe(x, vs);
+        //rest = y.toString();
+        rest = kratnoe(x, vs);
+	//rest = x.toString();
+	rr=rr+rest+";"//+vs.toString()+";";
+        //if (rest == char2 ) j++;
+        } 
+return rr;
+}
+
+function kratnoe(xbig, xsmall)
+{
+//var n=i
+
+//var ni=xsmall.length;
+
+vmax = Math.floor(xbig / xsmall + 0.99) * xsmall;
+
+var ni=xsmall.length;
+
+vmax = vmax.toFixed(10);
+
+vmax=vmax*1;
+
+smax= vmax.toString();
+
+if(Math.abs(vmax)<0.001){smax= vmax.toExponential(1);}
+
+if(vmax==0){smax="0";}
+
+smax=smax.replace('.0e', 'e');
+
+return smax;
+}
+
+function newX1X2(t1)
+{
+var s1s=t1.split(";");
+var s1=s1s[0];
+var s2=s1s[1];
+
+var mini = parseFloat(s1);
+var maxi = parseFloat(s2);
+
+if (mini !== 0)
+{koef =  Math.abs(maxi / mini);
+vsig = maxi / mini;
+}
+else
+{koef = 1;
+vsig = 1;}
+    
+if (koef>10)
+{mini=0;
+}
+
+if (koef<0.1)
+{maxi=0;
+}
+
+    mmsum = Math.abs(maxi - mini);
+
+if (Math.abs(maxi)>Math.abs(mini))
+{mmi = Math.abs(maxi);
+}
+else
+{mmi = Math.abs(mini);}
+
+if (mmsum>mmi)
+{mmi = mmsum;
+}
+
+//smi=
+s3=mmi.toExponential(0);
+s4= "1" + s3.substr(1,100);
+
+//alert(s4);
+
+v4=parseFloat(s4);
+vmin=Math.floor(mini / v4)*v4;
+vmax = Math.floor(maxi / v4 + 0.99) * v4;
+
+if (((vmax - vmin) / v4) < 3)
+{v4 = v4 / 5;
+if ((mmsum) < (v4 * 2))
+{v4 = v4 / 2;
+vmin=Math.floor(mini / v4)*v4;
+vmax = Math.floor(maxi / v4 + 0.99) * v4;
+}}
+if (vsig < 0 && koef > 10)
+{vmin = 0-v4;
+}
+if (vsig < 0 && koef < 0.1)
+{vmax = 0-v4;
+}
+s4=vmin.toString()+";"+vmax.toString()+";;"+v4.toString();
+return s4;
+
+}
+
 ///////////////
 
 function RoundStep(nBig, nSm) {
@@ -333,6 +903,58 @@ return bc;
 
 }
 
+function car2sphY(xyzY) {
+var xyzy2=xyzY.split(";");
+var x=parseFloat(xyzy2[0]); 
+var y=parseFloat(xyzy2[1]); 
+var z=parseFloat(xyzy2[2]); 
+var y2=parseFloat(xyzy2[3]); 
+var Lxy=smartABS(x,y);
+
+var Lxy2=Lxy;
+//alert("Lxy="+Lxy.toString());
+var Lxyz=smartABS(Lxy,z);
+//alert("Lxyz="+Lxyz.toString());
+//alert(xyzy2[3]);
+
+//////////////if(Lxy==0)
+//////////////////{
+//alert("2");
+///var car2sphYs="0;0;"+xyzy2[2];
+///return car2sphYs;
+//alert(car2sphYs);
+///////////////////////////////}
+//////////////////////////////else{
+//alert("3");
+//alert("x="+x.toString());
+//alert("Lxy2="+Lxy2.toString());
+if(Lxy==0){var dx=0}else{var dx=x / Lxy2;}
+
+//alert("dx="+dx.toString());
+var d = Math.acos(dx);
+//alert(d.toString());
+if(y < 0){d = 2 * 3.14 - d;}
+    d = d*114.59/2;
+d=Math.round(d*1000)/1000;
+//alert(d.toString());
+if(Lxyz==0){var dx=0}else{var dx=Lxy2 / Lxyz;}
+//dx=Lxy2 / Lxyz;
+//alert(dx.toString());
+j = Math.acos(dx);
+    if(z < 0){j = -j;}
+    j = j*114.59/2;
+j=Math.round(j*1000)/1000;
+if(d > 400){d = 0;}
+    var Dmax = 180;
+    if(d > Dmax){d = d - 360;}
+   var iinn = Lxyz * Math.pow(10,y2); // '''Sqr(x ^ 2 + y ^ 2 + z ^ 2)
+iinn=Math.round(iinn*1000)/1000;
+//    var car2sphYs = d.toString() + ";" + j.toString() + ";" + iinn.toString();
+    var car2sphYs = d.toString() + "\t" + j.toString() + "\t" + iinn.toString();
+//alert(car2sphYs);
+    return car2sphYs;        
+ ///////////////////////////   }
+}
 //////////////////////////////////////////
 function props(x1xN, min4max4) {
 var pieces = x1xN.split(";");
@@ -547,7 +1169,7 @@ var str = [
     ['input3','input4']
 ];
 
-    textFrom2 = document.getElementById("target").value
+    textFrom2 = document.getElementById("tar0").value
 
 textArray = textFrom2.split("\n");
 
@@ -571,13 +1193,17 @@ textArray[i] = textArray[i].replace(/[;]/g, '\t');
 Tneo=Tneo+textArray[i]+'\n';
 }
 
-    document.getElementById("target").value = Tneo;
+    document.getElementById("tar0").value = Tneo;
 
 ///////////////////////////////////
+
+//alert('5678');
 
 val = 0;//document.getElementById('box').value ;// вот так мы его и получаем. box это id вашего селекта замените его на свое
 
 var newst=["1234", "5678"];
+var oldst="";
+
 newst=textArray[3].split("\t");
 var smax=[1, 2];
 var smin=[1, 2];
@@ -614,11 +1240,53 @@ sraz[j] = sraz[j].toExponential();
 str[j][0] = smin[j];//+";"+sraz[j];
 str[j][1] = smax[j];//+";"+sraz[j];
 
-//alert(str);
+oldst=oldst+"\n"+smin[j]+";"+smax[j];
+
 }
 
 
 //THISsca
+
+//alert('1234');
+
+var sss=document.getElementById("cols").value
+//var s4=sss.split('\n\n');
+var s4=sss.split('\n');
+var s5='';
+//alert(s4);
+
+for(var j1=0; j1<s4.length;j1++) 
+{
+
+var supij=s4[j1];
+var mi1x=0;
+var ma1x=0;
+var mi1y=0;
+var ma1y=0;
+var sus=supij.split(";;");
+for(var i1=0; i1<sus.length;i1++) 
+{
+
+var ij=sus[i1];//"0;1";
+ijs=ij.split(";");
+var i=parseFloat(ijs[0]);
+var j=parseFloat(ijs[1]);
+ij=ij+"!!!"+str[i][0].toString()+";"+str[i][1].toString()+"!!!"+str[j][0].toString()+";"+str[j][1].toString();
+//alert(ij);
+if (str[i][0]<mi1x) mi1x=str[i][0];
+if (str[i][1]>ma1x) ma1x=str[i][1];
+if (str[j][0]<mi1y) mi1y=str[j][0];
+if (str[j][1]>ma1y) ma1y=str[j][1];
+}
+ij=mi1x.toString()+";"+ma1x.toString()+"!!!"+mi1y.toString()+";"+ma1y.toString();
+s5=s5+'\n'+ij;
+}
+//alert(s5);
+    document.getElementById("ito").value = s5;
+
+    document.getElementById("sca").value = oldst;
+
+//alert(str);
 
 var xBox=document.getElementById('xBox').value;
 var xB=parseFloat(xBox);

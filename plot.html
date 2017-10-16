@@ -1,0 +1,231 @@
+<script type="text/javascript" src="XY.js"></script>
+<script src="plotly.min.js"></script>
+<script>
+window.onload=init;
+function init() {
+//plot1(0);plot1(1);plot2();
+}
+</script>
+
+<h3><font color="red"> #Graphr #multiplot #csv2svg #github49 #d3js #plotly #dataviz
+<br>
+<button onclick="document.getElementById('cols').value='0;6;;0;1#Js;Jr \n 5;3;;5;7#dJb/dB;dJa/dB'; plot1(0);plot1(1);plot2();">Rock magnetic(Js;Jr)</button>
+<button onclick="document.getElementById('cols').value='0;2;;0;1#Ji;Jr \n 5;3;;5;7#dJb/dB;dJa/dB'; plot1(0);plot1(1);plot2();">Rock magnetic(Ji;Jr)</button>
+<br>
+<button onclick="document.getElementById('cols').value='0;12;;0;13#D;J \n0;12;;0;13#D;J'; plot1(0);plot1(1);plot2();">Paleomagnetic(D;J)</button>
+<button onclick="document.getElementById('cols').value='0;14;;0;14#In;In \n0;14;;0;14#In;In'; plot1(0);plot1(1);plot2();">Paleomagnetic(In)</button>
+<br>
+<button onclick="document.getElementById('cols').value='0;1;;0;2#J1;J2 \n0;3;;0;4#dJ1;dJ2'; plot1(0);plot1(1);plot2();">DTMA(J1;J2)</button>
+<button onclick="document.getElementById('cols').value='0;3;;0;4#J1;J2 \n0;3;;0;4#dJ1;dJ2'; plot1(0);plot1(1);plot2();">DTMA(dJ/dt)</button>
+<br>
+<button onclick="CLS2()">Refresh (CLEAR SCREEN)</button>
+
+<button onclick="window.location.href='index.html'"> << Back to ROCK.PALEOMAG.RU << </button>
+<br>
+Press 'Refresh' and 'Plot' to change layout</font> ֽאזלטעו 'Plot'</h3>
+<br>
+<script>
+<button onclick="document.getElementById('cols').value='0;13;;0;13#In;In \n0;13;;0;13#J;J'; plot1(0);plot1(1);plot2();">Paleomagnetic(J)</button>
+<button onclick="DTMA2()">Diff (DTMA)</button>
+<button onclick="dTest()">Test</button>
+//<textarea id="tt" name="tt" cols="25" rows="2" >25;725</textarea>
+</script>
+
+
+<div id="div0" style="width:800px;height:600px;"></div>
+
+<textarea id="Xsc0" name="Xsc0" cols="80" rows="2" WRAP = "off">5</textarea>
+<textarea id="Ysc0" name="Ysc0" cols="80" rows="2" WRAP = "off">5</textarea>
+
+<div id="div1" style="width:800px;height:600px;"></div>
+
+<textarea id="Xsc1" name="Xsc1" cols="80" rows="2" WRAP = "off">5</textarea>
+<textarea id="Ysc1" name="Ysc1" cols="80" rows="2" WRAP = "off">5</textarea>
+
+
+<textarea id="cols" name="cols" cols="25" rows="25" >0;6;;0;1#Js;Jr
+5;3;;5;7#dJb/dB;dJa/dB</textarea>
+<textarea id="tar0" name="tar0" cols="25" rows="25" ></textarea>
+
+<textarea id="sca" name="sca" cols="25" rows="25" ></textarea>
+
+<textarea id="ito" name="ito" cols="35" rows="25" ></textarea>
+
+
+<SCRIPT type=text/javascript>
+//<textarea id="tar1" name="tar1" cols="25" rows="25" ></textarea>
+
+//<button onclick="plot2()">PLOT2</button><br>
+
+//alert(trioseq("100;500;;100"));
+
+document.getElementById("tar0").value = localStorage.getItem('variableName');
+
+for(var k=0; k<0;k++) 
+{
+
+//var k=0;
+var sw='<div id="'+lay1(k)+'" style="width:400px;height:300px;"></div>';
+//alert(sw);
+document.write(sw);
+}
+
+function lay1(n){var s1="div"+n.toString();return s1;}
+function tata(n){var s1="tar"+n.toString();return s1;}
+//function dTest(){var s1=document.getElementById('tt').value;alert(newX1X2( s1));}
+//function dTest(){alert(smartABS(3,4));}
+//function dTest(){alert(car2sphY("1;1;1;1"));}
+function dTest(){var s1=document.getElementById('tt').value;alert(car2sphY(s1));}
+
+function CLS2()
+{
+window.location.reload();
+//////////////////////document.getElementById('sca').value="";
+} 
+
+//var stest="0;1;;0;2\n\n0;3;;0;4\n\n0;1;;0;3\n\n0;2;;0;4";
+
+function plot2()
+{
+minimax(); 
+}
+
+function plot1(ik)
+{
+
+stest = document.getElementById("cols").value;
+var Nslov = stest.split("\n");
+var k=ik;
+var s=localStorage.getItem('variableName'); 
+var textArray = s.split("\n");
+document.getElementById('tar0').value=s;
+var slovo=Nslov[k];//"0;3;;0;4";
+var slovs=slovo.split("#");
+slovo=slovs[0];
+//alert(slovo);
+//alert(slovs[1]);
+
+var qx=nchar(slovo, ";;")+1;var er=slovo.split(";;");
+var myDiv = document.getElementById(lay1(k));
+var data = [];var xx = [];var yy = []; var nmax=[]; var nako=['','']; var nakomax=[]; var Tmax=[]; var Tnako=[];
+var temps=['0.1','4']; var newNumber1; var newNumber0;
+for(var j=0; j<qx;j++) {
+nmax.push(0); nako.push(''); Tmax.push(0); Tnako.push(0); nakomax.push(1000);
+xx.push(new Array());yy.push(new Array());
+var sxy=er[j].split(";");var nx=parseFloat(sxy[0]);var ny=parseFloat(sxy[1]);
+for(var i=1; i<textArray.length;i++) {
+temps= textArray[i].split("\t");
+newNumber0=parseFloat(temps[nx]);xx[j].push(newNumber0);
+newNumber1=parseFloat(temps[ny]);yy[j].push(newNumber1);
+if (newNumber1>nmax[j] && newNumber1<1000000000 && i<1001) {nmax[j]=newNumber1; Tmax[j]=i;}
+if ((i%100)==0){
+nako[j]=nako[j]+";"+nmax[j].toString(); 
+if (newNumber1>nmax[j] && newNumber1<1000000000 && i<1001) {nmax[j]=newNumber1; Tmax[j]=i;}
+if (nakomax[j]>nmax[j] && nakomax[j]<1000000000 && nmax[j]!==0 && i<1001) {nakomax[j]=nmax[j]; Tnako[j]=Tmax[j];}
+nmax[j]=0;}
+//if ((i%50)==0){nako[j]=nmax[j].toString(); nmax[j]=0;}
+} }
+//alert(nako[j]); alert(nakomax[j].toString()+";"+Tnako[j].toString()+";"+j.toString());
+
+if(ik==1){
+//alert(nakomax[1].toString()+";"+Tnako[1].toString()+";"+ik.toString());
+//alert(nakomax[1].toString()+";"+Tnako[1].toString()+";"+ik.toString());
+var n1=Tnako[1]-10; var n2=Tnako[1]+10; 
+//alert(textArray[Tnako[1]-10]);alert(textArray[Tnako[1]+10]);
+
+newNumber1=0
+for(var i=n1; i<n2;i++) {
+temps= textArray[i].split("\t");
+newNumber0=parseFloat(temps[2]);
+newNumber1=newNumber1+newNumber0;
+}
+newNumber1=newNumber1/20;
+temps= textArray[Tnako[1]].split("\t");
+newNumber0=parseFloat(temps[0]);
+//alert(newNumber1.toString()+";"+newNumber0.toString()+";"+ik.toString());
+var x1=newNumber0; var y1=newNumber1; 
+
+n1=900-10; n2=900+10; 
+newNumber1=0
+for(var i=n1; i<n2;i++) {
+temps= textArray[i].split("\t");
+newNumber0=parseFloat(temps[2]);
+newNumber1=newNumber1+newNumber0;
+}
+newNumber1=newNumber1/20;
+temps= textArray[900].split("\t");
+
+newNumber0=parseFloat(temps[0]);
+var x2=newNumber0; var y2=newNumber1; 
+var k1=(y2-y1)/(x2-x1)*500;
+//alert(newNumber1.toString()+";"+newNumber0.toString()+";"+k1.toString());
+
+
+}
+
+//alert(nako[3]); alert(nakomax[3].toString()+";"+Tnako[3].toString());
+
+//alert(nmax[j].toString());
+var d3 = Plotly.d3,  N = 40,    x=xx[0], y=xx[0];
+var sl2= slovs[1].split(";");
+
+for(var j=0; j<qx;j++) {var str1=sl2[j]; data.push({x:xx[j],y:yy[j], name: str1, type:"scatter"});}
+  layout = { 
+xaxis: {
+    rangemode: 'tozero',
+    autorange: true
+  },
+dragmode: 'pan', 
+tickmode: 'array',
+annotations: [
+    {
+      title: 'x Axis',
+      x: 0,
+      y: 0,
+      xref: 'x',
+      yref: 'y',
+      text: '',//lay1(k),
+      showarrow: true,
+      arrowhead: 7,
+      ax: 0,
+      ay: 0
+    }
+  ]
+
+};
+
+//alert(tata(k));
+
+Plotly.plot(myDiv, data, layout,{
+modeBarButtonsToRemove: ['toImage', 'sendDataToCloud'],  
+modeBarButtonsToAdd: [{name: 'toImage2',    icon: Plotly.Icons.camera,    
+click: function(gd) {Plotly.downloadImage(gd, {format: 'svg'}) } }]
+});
+
+myDiv.on('plotly_relayout',
+
+
+    function(eventdata){  
+
+ //////////var newIndex = myDiv.layout.annotations;
+
+       // var ab=lay1(k)+'\n' +
+       //     'x1:' + eventdata['xaxis.range[0]'] + '\n' +
+       //     'x2:' + eventdata['xaxis.range[1]'] + '\n' +
+       //     'y1:' + eventdata['yaxis.range[0]'] + '\n' +
+       //     'y2:' + eventdata['yaxis.range[1]'];
+var x1x2=eventdata['xaxis.range[0]']+";"+eventdata['xaxis.range[1]'];
+var y1y2=eventdata['yaxis.range[0]']+";"+eventdata['yaxis.range[1]'];
+var a1=newX1X2(x1x2);
+var a2=newX1X2(y1y2);
+
+var ab=trioseq(a1)+"\n"+trioseq(a2);
+
+document.getElementById("Xsc"+k.toString()).value = trioseq(a1);//a1;
+document.getElementById("Ysc"+k.toString()).value = trioseq(a2)//a2;
+
+//document.getElementById(tata(k)).value = ab;
+    });
+
+}
+</script>

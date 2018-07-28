@@ -15,30 +15,26 @@
 		<div id="logo_holder">
 			<div id="logo"></div>
 		</div>
-		<div id="header_text">Drawing diagrams from user data 
-</div>
-
+		<div id="header_text">Построение диаграмм по табличным данным</div>
 <div>
-<a href="index_ru.html"><font color="white">Русский (Россия) RU</font></a>
+<a href="index.html"><font color="white">English (USA) EN</font></a>
 </div>
-
 	</div>
 
 	<div id="content_holder">
 
 
 		<div class="container centered">
-			<div class="content_header">Preparing the workspace (or just press the "Find points" and "Next" buttons)</div>
+			<div class="content_header">Подготовка рабочего поля (Можно просто нажать кнопки "Найти точки" и "Далее")</div>
 			<div class="text_container">
-				Enter the functions (for example, by pressing the "tan (x)" and exp (x) buttons), fill in from/to/step fields and click on the "Find points" button. <br/> If there are several functions, separate them with ";". If you press the wrong button - press the reset "C".
+				Введите функции (например, нажав кнопки "tan(x)" и exp(x)), установите отрезок с шагом и нажмите на кнопку "Найти точки".<br/>
+				Если функций несколько - разделите их знаком ";". Если нажали не ту кнопку - нажмиме на сброс "C".<br/>
+				При необходимости выберите или введите размер рабочего поля.<br/>
+				<strong class="undisplayable">Можно узнать значения минимумов/максимумов функций, нажав на "f(Xmin)="/"f(Xmax)=" 
+<br/>(или просто вместо функций написать какое-нибудь выражение, например "2*pi", и увидеть результат).</strong>
+<br/><strong class="undisplayable">Можно загрузить CSV файл (или любой другой файл с данными).</strong>
 <br/>
-				
-If necessary, select or enter the size of the workspace.<br/>
-			<strong class="undisplayable">You can find the minima / maxima values of functions by clicking on "f (Xmin) =" / "f (Xmax) ="<br/>
-(or simply write some expression instead of functions, for example "2 * pi", and see the result).</strong>
-<br/><strong class="undisplayable">You can upload the CSV file (or any other data file).</strong>
-<br/>
-Click the "Next" button to go to the plotting.<br/>
+Для перехода к построению графика нажмите кнопку "Далее".<br/>
 			</div>
 
                                 <div class="ui_button" id="del" onclick="DOBA('CLS')">C</div>                    
@@ -63,20 +59,20 @@ Click the "Next" button to go to the plotting.<br/>
 
 		<div class="container">
 			<div class="flexed_block">
-				<div>F(x)</div>
-				<div>X range</div>
+				<div>Функция</div>
+				<div>На отрезке</div>
 			</div>
 			<div class="flexed_block centered">
 				<div>f(x)=
 <textarea class="input_type" id="tCare" name="target">x^2; sin(x)</textarea>
 <input id="tCare"  style="display: none;" class="input_type" placeholder="x^2; sin(x)"/>
 </div>
-				<div>From <input id="textFrom" class="input_type" type="text" placeholder="1"/></div>
+				<div>От <input id="textFrom" class="input_type" type="text" placeholder="1"/></div>
 
 
 
-				<div><b class="undisplayable"></b>Step<b class="undisplayable"></b> <input id="textStep" class="input_type" placeholder="0.1"/></div>
-				<div>To <input id="textTo" class="input_type" type="text" placeholder="10"/></div>
+				<div><b class="undisplayable">c </b>Шаг<b class="undisplayable">ом</b> <input id="textStep" class="input_type" placeholder="0.1"/></div>
+				<div>До <input id="textTo" class="input_type" type="text" placeholder="10"/></div>
 
 
 
@@ -87,34 +83,34 @@ Click the "Next" button to go to the plotting.<br/>
 		</div>
 		<div class="container centered">
 			<div class="flexed_block doubled">
-				<div>Workspace size (selected): 
+				<div>Размер поля: 
 					<select id="paper" name="paper"class="input_type" onchange="onlyrest()">
-						<option value=1>1748;1240;A3(Horizontal)</option>
+						<option value=1>1748;1240;A3(Горизонтальный)</option>
 
-						<option value=2>1240;1748;A3(Vertical)</option>
+						<option value=2>1240;1748;A3(Вертикальный)</option>
 
-						<option value=3>1240;874;A4(Horizontal)</option>
+						<option value=3>1240;874;A4(Горизонтальный)</option>
 
-						<option value=4 >874;1240;A4(Vertical)</option>
+						<option value=4 >874;1240;A4(Вертикальный)</option>
 
-						<option value=5 selected >874;620;A5(Horizontal)</option>
+						<option value=5 selected >874;620;A5(Горизонтальный)</option>
 
-						<option value=6>620;874;A5(Vertical)</option>
+						<option value=6>620;874;A5(Вертикальный)</option>
 					</select>
 				</div>
 				<div>
-					Workspace size (user defined): 
-					<input id="A4WH" class="input_type" value="874;620;A5(Horizontal)"/>
+					Размер поля (изменяемый): 
+					<input id="A4WH" class="input_type" value="874;620;A5(Горизонтальный)"/>
 				</div>
 			</div>
 		</div>
 		<div class="container">
 			<div class="right_sided">
 
-				<div class="ui_button" id="calc_button" onclick="CARE()">Find points</div>
-				<div class="ui_button" id="next_button">Next>></div>
+				<div class="ui_button" id="calc_button" onclick="CARE()">Найти Точки</div>
+				<div class="ui_button" id="next_button_ru">Далее</div>
 
-				<div class="ui_button" id="calc_button" onclick="DTMM()"  style="display: none;">Find Min/Max</div>
+				<div class="ui_button" id="calc_button" onclick="DTMM()"  style="display: none;">Найти Min/Max</div>
 
 
 
@@ -137,17 +133,17 @@ Click the "Next" button to go to the plotting.<br/>
 
 		<div class="container">
 			<div class="right_sided">
-				<div class="ui_button" id="smooth_button"  style="display: none;">Rock magnetic parameters</div>
+				<div class="ui_button" id="smooth_button"  style="display: none;">Петромагнитные параметры</div>
 			</div>
 		</div>
 		<div class="container undisplayable">
 			<div class="hideable">
-				<div class="hideable_title"><p class="icon hide_icon"></p>Load file</div>
+				<div class="hideable_title"><p class="icon hide_icon"></p>Загрузить файл</div>
 				<div class="centered" style="display: none;">
-					<div class="mobile lined">Browse file for upload:</div>
+					<div class="mobile lined">Выберите файл для загрузки:</div>
 					<input type="file" id="fileToLoad" onchange="loadCSVtext()" accept=".csv">
 					
-<div class="ui_button" id="lolo" onclick="loadCSVtext()">Second attempt</div>
+<div class="ui_button" id="lolo" onclick="loadCSVtext()">Вторая попытка</div>
 
 <div class="btn_group">
 						
@@ -156,7 +152,7 @@ Click the "Next" button to go to the plotting.<br/>
 						<div class="ui_button" onclick="DJIn()" style="display: none;">Diff (DJIn)</div>
 					</div>
 					<div class="text_container">
-						Click "Next" button after upload. 
+						После Загрузки файла нажмите Далее. 
 					</div>
 					<div><textarea id="inputTextToSave" class="input_type" style="display: none;"></textarea></div>
 				</div>
@@ -169,10 +165,7 @@ Click the "Next" button to go to the plotting.<br/>
 
 	<div id="wrapper"></div>
 	<div id="footer">
-		<div id="site_data">Customer: Yaroslav Solyanikov (Ярослав Соляников) +79140317248 @yaroslav1982<br>Contractor: Vladislav Muhamediev (Владислав Мухамедиев)<br>
-
-
-</div>
+		<div id="site_data">Заказчик: Ярослав Соляников +79140317248 @yaroslav1982<br>Исполнитель: Владислав Мухамедиев</div>
 	</div>
 
 This site uses programming code and Javascript/jQuery files from:<br>

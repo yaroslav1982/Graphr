@@ -1,9 +1,10 @@
-var textArray=['1234','5678'];
+п»їvar textArray=['1234','5678'];
 function smartABS(x1,y1)
 {
  var z1=x1*x1+y1*y1;
  z1=Math.sqrt(z1);
 return z1;
+
 }
 
 function saveTextAsFile()
@@ -29,7 +30,6 @@ var temp=0.1;
 var temp2=0.1;
 var temp3=0.1;
 var temp4=0.1;
-
 var temps=['0.1','4'];
 var tBak=['0.1','4'];
 
@@ -101,48 +101,48 @@ temp2=(parseFloat(textArray[4]));
 //////////////////////////////////////////////////alert(s);
 }
 
-// Замыкание
+// Г‡Г Г¬Г»ГЄГ Г­ГЁГҐ
 (function() {
   /**
-   * Корректировка округления десятичных дробей.
+   * ГЉГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГЄГ  Г®ГЄГ°ГіГЈГ«ГҐГ­ГЁГї Г¤ГҐГ±ГїГІГЁГ·Г­Г»Гµ Г¤Г°Г®ГЎГҐГ©.
    *
-   * @param {String}  type  Тип корректировки.
-   * @param {Number}  value Число.
-   * @param {Integer} exp   Показатель степени (десятичный логарифм основания корректировки).
-   * @returns {Number} Скорректированное значение.
+   * @param {String}  type  Г’ГЁГЇ ГЄГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГЄГЁ.
+   * @param {Number}  value Г—ГЁГ±Г«Г®.
+   * @param {Integer} exp   ГЏГ®ГЄГ Г§Г ГІГҐГ«Гј Г±ГІГҐГЇГҐГ­ГЁ (Г¤ГҐГ±ГїГІГЁГ·Г­Г»Г© Г«Г®ГЈГ Г°ГЁГґГ¬ Г®Г±Г­Г®ГўГ Г­ГЁГї ГЄГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГЄГЁ).
+   * @returns {Number} Г‘ГЄГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГ Г­Г­Г®ГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ.
    */
   function decimalAdjust(type, value, exp) {
-    // Если степень не определена, либо равна нулю...
+    // Г…Г±Г«ГЁ Г±ГІГҐГЇГҐГ­Гј Г­ГҐ Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­Г , Г«ГЁГЎГ® Г°Г ГўГ­Г  Г­ГіГ«Гѕ...
     if (typeof exp === 'undefined' || +exp === 0) {
       return Math[type](value);
     }
     value = +value;
     exp = +exp;
-    // Если значение не является числом, либо степень не является целым числом...
+    // Г…Г±Г«ГЁ Г§Г­Г Г·ГҐГ­ГЁГҐ Г­ГҐ ГїГўГ«ГїГҐГІГ±Гї Г·ГЁГ±Г«Г®Г¬, Г«ГЁГЎГ® Г±ГІГҐГЇГҐГ­Гј Г­ГҐ ГїГўГ«ГїГҐГІГ±Гї Г¶ГҐГ«Г»Г¬ Г·ГЁГ±Г«Г®Г¬...
     if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
       return NaN;
     }
-    // Сдвиг разрядов
+    // Г‘Г¤ГўГЁГЈ Г°Г Г§Г°ГїГ¤Г®Гў
     value = value.toString().split('e');
     value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
-    // Обратный сдвиг
+    // ГЋГЎГ°Г ГІГ­Г»Г© Г±Г¤ГўГЁГЈ
     value = value.toString().split('e');
     return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
   }
 
-  // Десятичное округление к ближайшему
+  // Г„ГҐГ±ГїГІГЁГ·Г­Г®ГҐ Г®ГЄГ°ГіГЈГ«ГҐГ­ГЁГҐ ГЄ ГЎГ«ГЁГ¦Г Г©ГёГҐГ¬Гі
   if (!Math.round10) {
     Math.round10 = function(value, exp) {
       return decimalAdjust('round', value, exp);
     };
   }
-  // Десятичное округление вниз
+  // Г„ГҐГ±ГїГІГЁГ·Г­Г®ГҐ Г®ГЄГ°ГіГЈГ«ГҐГ­ГЁГҐ ГўГ­ГЁГ§
   if (!Math.floor10) {
     Math.floor10 = function(value, exp) {
       return decimalAdjust('floor', value, exp);
     };
   }
-  // Десятичное округление вверх
+  // Г„ГҐГ±ГїГІГЁГ·Г­Г®ГҐ Г®ГЄГ°ГіГЈГ«ГҐГ­ГЁГҐ ГўГўГҐГ°Гµ
   if (!Math.ceil10) {
     Math.ceil10 = function(value, exp) {
       return decimalAdjust('ceil', value, exp);
@@ -266,6 +266,65 @@ tBak=temps;
 //////////////////////////////////////////////////alert(s);
 }
 
+function DTMM()
+{
+ var s=document.getElementById("target").value;
+var textArray = s.split("\n");
+var Tneo='';
+var temp=0.1;
+var temp2=0.1;
+var temps=['0.1','4'];
+var tBak=['0.1','4'];
+var nako='';
+var Tmax=[0, 0]; 
+var nakot='';
+var Tnako=[0, 0];
+var Tnakoi=[0, 0];
+var nmax=[0, 0];
+var nakomax=[0, 0];
+var nmin=[0, 0];
+var nakomin=[0, 0];
+var newNumber0=0;
+var newNumber1=0;
+
+for(var k=0; k<10;k++) 
+{
+Tmax.push(0);
+Tnako.push(0);
+Tnakoi.push(0);
+nmin.push(0);
+nakomax.push(0);
+//nakomax[k]=1000;
+nakomin[k]=0;
+
+for(var i=1; i<textArray.length;i++) 
+{
+temps= textArray[i].split("\t");
+temp2=parseFloat(temps[k]);//(parseFloat(temps[2])-parseFloat(tBak[2]))/(parseFloat(temps[0])-parseFloat(tBak[0]));
+temp2=Math.round(temp2*100000000)/100000000;
+newNumber1=temp2; //parseFloat(temps[2]);//yy[j].push(newNumber1);
+nmax[k]=newNumber1; Tmax[k]=i;
+///nako=nako+";"+nmax[k].toString(); 
+nmin[k]=newNumber1; Tmax[k]=i;
+///nako=nako+";"+nmin[k].toString(); 
+if (nakomax[k]>nmax[k]) {nakomax[k]=nmax[k]; Tnako[k]=Tmax[k];}
+if (nakomin[k]<nmin[k]) {nakomin[k]=nmin[k]; Tnakoi[k]=Tmax[k];}
+}
+//alert('7');
+//alert(nakomax[k].toString()+";"+Tnako[k].toString());
+//alert('8');
+//alert(nakomin[k].toString()+";"+Tnakoi[k].toString());
+//alert('9');
+nakot=DeltaRange(nakomax[k].toString()+";"+nakomin[k].toString(), 10);
+tBak= nakot.split(";;");
+nakot=tBak[0];
+nako=nako+nakot+";;   ";
+}
+///    document.getElementById("target").value = Tneo;
+//alert(nako);
+localStorage.setItem('varMM', nako);
+}
+
 function DTMA3()
 {
  var s=document.getElementById("target").value;
@@ -290,7 +349,7 @@ tBak=temps;
 
 function DTMA2()
 {
- var s=document.getElementById("tar0").value;
+ var s=document.getElementById("target").value;
 var textArray = s.split("\n");
 var Tneo='';
 var temp=0.1;
@@ -307,7 +366,7 @@ temp2=Math.round(temp2*100000000)/100000000;
 Tneo=Tneo+textArray[i]+'\t'+temp+'\t'+temp2+'\n';
 tBak=temps;
 }
-    document.getElementById("tar0").value = Tneo;
+    document.getElementById("target").value = Tneo;
 }
 
 function DJIn()
@@ -338,45 +397,134 @@ Tneo=Tneo+textArray[i]+'\t'+diin+'\n';
     document.getElementById("target").value = Tneo;
 }
 
-function CARE()
+function CARE()             //Changed
 {
-    var textToSave = document.getElementById("tCare").value;
-    var textFrom = document.getElementById("textFrom").value;
-    var textTo = document.getElementById("textTo").value;
-    var textStep = document.getElementById("textStep").value;
-textToSave=textToSave.replace('log', 'Math.log');
-textToSave=textToSave.replace('sin', 'Math.sin');
-textToSave=textToSave.replace('cos', 'Math.cos');
+     var textToSave = document.getElementById("tCare").value || "x^2; sin(x)";
+    var textFrom = document.getElementById("textFrom").value || 1;
+    var textTo = document.getElementById("textTo").value || 10;
+    var textStep = document.getElementById("textStep").value || 0.1;
+  textToSave=textToSave.replace('arcsin', 'asin');
+  textToSave=textToSave.replace('arccos', 'acos');
+  textToSave=textToSave.replace('С…', 'x');  
+  textToSave=textToSave.replace('X', 'x');
 
 var tts= textToSave.split(";");
 
 var s='';
 var i=0;
 var j=0;
-//alert('1');
-for(i=parseFloat(textFrom); i<parseFloat(textTo);i=i+parseFloat(textStep)){
+for(i=parseFloat(textFrom); i<parseFloat(textTo);i=Math.round((i+parseFloat(textStep))*1000000)/1000000){
 s=s+i;
-//; x <= qwerty.length;
+
 for(j=0; j<tts.length;j++){
-//s=s+'t'
-s=s+'\t'+eval('x='+i+'; '+caretReplace(tts[j]));
+if((math.eval('x='+i+'; round('+tts[j]+',13)').entries[0]+'').indexOf("i")>-1)s=s+'\t'+NaN;
+else s=s+'\t'+math.eval('x='+i+'; round('+tts[j]+',13)').entries[0];
 }
 s=s+'\n';
+
 if (i>=parseFloat(textTo))break;
-//s=s+'\n';
 }
 s=s+parseFloat(textTo);
+
 for(j=0; j<tts.length;j++){
-s=s+'\t'+eval('x='+parseFloat(textTo)+'; '+caretReplace(tts[j]));
+	s=s+'\t'+math.eval('x='+parseFloat(textTo)+'; '+tts[j]).entries[0];
 }
+
 document.getElementById("target").value = s;
+
+//s=math.eval('x='+textFrom+';2+x*2').entries[0];
+
+//alert(s);
+
 loadARR();
+}
+
+function DOBA(perem)             //Changed
+{
+//alert(perem);
+var textToSave = document.getElementById("tCare").value // || "x^2; sin(x)";
+textToSave = textToSave.trim();
+//alert(textToSave);
+var textToSave1=textToSave+";"+perem;
+if (textToSave=='') textToSave1=perem;
+if (perem=='CLS') textToSave1='';
+//alert(textToSave);
+document.getElementById("tCare").value = textToSave1;
+}
+
+function CAREmin()             //Changed
+{
+     var textToSave = document.getElementById("tCare").value || "x^2; sin(x)";
+    var textFrom = document.getElementById("textFrom").value || 1;
+    var textTo = document.getElementById("textTo").value || 10;
+    var textStep = document.getElementById("textStep").value || 0.1;
+  textToSave=textToSave.replace('arcsin', 'asin');
+  textToSave=textToSave.replace('arccos', 'acos');
+  textToSave=textToSave.replace('С…', 'x');  
+  textToSave=textToSave.replace('X', 'x');
+
+var tts= textToSave.split(";");
+
+var s='';
+
+for(j=0; j<tts.length;j++){
+s=s+'\n'+math.eval('x='+textFrom+'; round('+tts[j]+',13)').entries[0];
+}
+
+//var s2=document.getElementById("tCare").value
+//	var s=math.eval('x='+textFrom+';'+s2).entries[0];
+
+s=s.trim();
+document.getElementById("tX").value = s;
+
+//	alert(s);
+}
+
+function CAREmax()             //Changed
+{
+     var textToSave = document.getElementById("tCare").value || "x^2; sin(x)";
+    var textFrom = document.getElementById("textFrom").value || 1;
+    var textTo = document.getElementById("textTo").value || 10;
+    var textStep = document.getElementById("textStep").value || 0.1;
+  textToSave=textToSave.replace('arcsin', 'asin');
+  textToSave=textToSave.replace('arccos', 'acos');
+  textToSave=textToSave.replace('С…', 'x');  
+  textToSave=textToSave.replace('X', 'x');
+
+var tts= textToSave.split(";");
+
+var s='';
+
+for(j=0; j<tts.length;j++){
+s=s+'\n'+math.eval('x='+textTo+'; round('+tts[j]+',13)').entries[0];
+}
+
+//var s2=document.getElementById("tCare").value
+//	var s=math.eval('x='+textTo+';'+s2).entries[0];
+
+s=s.trim();
+document.getElementById("tX").value = s;
+
+//	alert(s);
 }
 
 function destroyClickedElement(event)
 {
     document.body.removeChild(event.target);
 }
+
+function loadA2()
+{
+
+var stringArray = ['Р“РѕР»СѓР±Р°СЏ', 'Р“РѕСЂР±Р°С‚Р°СЏ', 'Р‘РµР»СѓРіР°'];
+var stringA2 = stringArray.sort();
+
+
+console.log('РЎРѕСЂС‚РёСЂРѕРІРєР°:', stringArray.sort());
+alert(stringA2);
+
+}
+
 
 function loadARR()
 {
@@ -602,7 +750,7 @@ Tneo=Tneo+textArray[i]+'\n';
 
 function loadCSVtext()
 {
-//alert('5');
+alert('5');
 
     var fileToLoad = document.getElementById("fileToLoad").files[0];
     var fileReader = new FileReader();
@@ -614,7 +762,7 @@ function loadCSVtext()
     fileReader.readAsText(fileToLoad, "UTF-8");
 
 //alert('tfu');
-alert('File loaded');
+alert('Р¤Р°Р№Р» Р·Р°РіСЂСѓР¶РµРЅ');
 
 var tf=document.getElementById('inputTextToSave').value; 
 
@@ -649,17 +797,24 @@ document.getElementById("delimiters").value=dede;
 
 var cd=document.getElementById('inputTextToSave').value; 
 var str = cd.replace(/\n|\r\n|\r/g, ';;'); 
+alert(str);
 //
-var str2 = str.replace(/\s{1,}/g, ';'); 
+//var str15 = str.replace(/[ ]/g, '\s');
+
+var str15 = str.replace(/\s\s+/g, ' ');
+alert(str15);
+var str2 = str15.replace(/\s{1,}/g, ';'); 
+alert(str2);
 //var str2 = str.replace(/\s{1,}/g, '\t'); 
 var str3 = cd.replace(/;{3,}/g, ';;'); 
 //var str4 = str3.replace(/\s/g, ''); 
 var str5 = str2.replace(/;{2,}/g, '\r\n'); 
+alert(str5);
 //var str6 = str5.replace(/;/g, ' '); 
 //
 
 var str7 = str5.replace(/;/g, '\t'); 
-
+alert(str7);
 //if(delim=",") {str7 = str5.replace(/,/g, '\t');}
 
 //alert(str5);
@@ -673,15 +828,15 @@ if (delim==",") {document.getElementById('target').value=str8;}
 ///alert('look');
 
 var Tneo="";
-    textFrom2 = document.getElementById("inputTextToSave").value
+    textFrom2 = document.getElementById('target').value;//document.getElementById("inputTextToSave").value
 textArray = textFrom2.split("\n");
-for(var i=0; i<textArray.length;i++) 
+for(var i=3; i<textArray.length;i++) 
 {
 textArray[i] = textArray[i].replace(/[;]/g, '\t');
 Tneo=Tneo+textArray[i]+'\n';
 }
 
-//    document.getElementById("target").value = Tneo;
+/////////////////////////////    document.getElementById("target").value = Tneo;
 
 var WW=document.getElementById('target').offsetWidth;
 var HH=document.getElementById('target').offsetHeight;
@@ -694,6 +849,73 @@ var m22=n1(fhN);
 //alert(HH);
 sOX.value=props(m222, "0;"+WW);
 sOY.value=props(m22, "0;"+HH);
+
+document.getElementById('target').value=str7; ///5;
+
+}
+
+function newcols()
+{
+//'document.getElementById('xBox').value='5';
+//'document.getElementById('yBox').value='5';
+document.getElementById('XYc').value=document.getElementById('xBox').value+";"+document.getElementById('yBox').value+"#Ji;Js"; //'5;5#Ji;Js';
+
+}
+
+function newOX()
+{
+var ox=document.getElementById('OXbox').value; //'5;5#Ji;Js';
+//alert(ox);
+switch(ox) {
+  	case '0':  // if (x === 'value1')
+  dLeft();PLB();glue();changeText();
+break;
+	case '1':  // if (x === 'value2')
+dLRM();PLB();glue();changeText();  
+break;
+	case '2':  // if (x === 'value2')
+dRight();PLB();glue();changeText();  
+break;
+}
+}
+
+function newOY()
+{
+var oy=document.getElementById('OYbox').value; //'5;5#Ji;Js';
+switch(oy) {
+  	case '0':  // if (x === 'value1')
+dDown();PLB();glue();changeText();  
+break;
+	case '1':  // if (x === 'value2')
+dUDZ();PLB();glue();changeText();  
+break;
+	case '2':  // if (x === 'value2')
+  dUp();PLB();glue();changeText();
+break;
+}
+}
+
+function newchange()
+{
+    MM3();
+
+    var a0=document.getElementById('XPERS').value; 
+    var b0=document.getElementById('ABCD').value; 
+    var ab=DeltaRange(a0,10); 
+    var bc=trioseq(ab)+';'; 
+    var de=bc.split(';;'); var fg=de[0]; var hi=props(fg,b0); 
+    document.getElementById('fw').value=hi; 
+    a0=document.getElementById('YPERS').value; 
+    b0=document.getElementById('YBCD').value; 
+    ab=DeltaRange(a0,10); bc=trioseq(ab)+';'; 
+    de=bc.split(';;'); 
+    fg=de[0]; hi=props(fg,b0); 
+    document.getElementById('fh').value=hi; 
+    alertText(); 
+    changeText();
+
+    glue();
+    changeText();
 
 }
 
@@ -746,6 +968,34 @@ if (st2=='-1') {sOY.value=props(m22, HH+";"+H1)};
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 
+function onlyrest()
+{
+
+var el = document.getElementById("paper");
+var val = el[el.selectedIndex].text;
+//alert(val);
+
+
+//var W1=document.getElementById('paper').value;
+//var H1=document.getElementById('tH1').value;
+
+//var WW2=parseFloat(document.getElementById('tW2').value)+parseFloat(W1);
+//var HH2=parseFloat(document.getElementById('tH2').value)+parseFloat(H1);
+
+//var WW=WW2.toString();
+//var HH=HH2.toString();
+
+//var sOX = document.getElementById("fw");
+//var sOY = document.getElementById("fh");
+
+//fwN = document.getElementById('fwBox').value ;
+
+//fhN = document.getElementById('fhBox').value ;
+document.getElementById('A4WH').value=val;
+
+}
+////////////////////////////////////////////////////////////////////////////////////////
+
 function is2s(str, smax, smin)
 {
 str2=str.split(".");
@@ -780,7 +1030,10 @@ var vt = parseFloat(t1);
 var vs = parseFloat(s1);
 //alert(s1);
 
-    for (var x = vf; x <= vt; x=x+vs) 
+vt=vt+vs;
+//vf=vf-vs;
+
+    for (var x = vf; x < vt; x=x+vs) 
 	{
 	//y=kratnoe(x, vs);
         //rest = y.toString();
@@ -816,6 +1069,8 @@ smax=smax.replace('.0e', 'e');
 
 return smax;
 }
+
+////////////////////////////////////////
 
 function newX1X2(t1)
 {
@@ -883,6 +1138,68 @@ return s4;
 }
 
 ///////////////
+
+function DeltaRange(t1, mgLines)
+{
+var s1s=t1.split(";");
+var s1=s1s[0];
+var s2=s1s[1];
+
+var mini = parseFloat(s1);
+var maxi = parseFloat(s2);
+
+var xr=Math.abs(maxi - mini)/mgLines;
+var mimi=Math.abs(mini/xr)/mgLines*5;
+if(mimi<1) 
+{mini=0;
+xr=Math.abs(maxi - mini)/mgLines;
+}
+
+var loga=Math.log10(xr);
+var inta=Math.floor(loga); //  4
+
+//Math.pow(7, 2); // 49
+
+var deca=Math.pow(10, inta);
+
+var dd=deca;
+
+var mi1=Math.floor(mini/deca);
+var ma1=Math.ceil(maxi/deca);
+
+var iFlag=0;
+
+if((ma1-mi1)>(mgLines*2)) 
+{deca=deca*5;
+mi1=Math.floor(mini/deca);
+ma1=Math.ceil(maxi/deca);
+iFlag=iFlag+1;
+}
+
+if((ma1-mi1)>(mgLines)) 
+{deca=deca*2;
+mi1=Math.floor(mini/deca);
+ma1=Math.ceil(maxi/deca);
+iFlag=iFlag-1;
+}
+
+if(iFlag==0) 
+{dd=deca/5;
+}
+
+var mi2=mi1*deca;
+var ma2=ma1*deca;
+ 
+
+//var s4="5";
+
+var s4=mi2.toString()+";"+ma2.toString()+";;"+deca.toString()+";"+dd.toString();
+
+return s4;
+
+}
+
+////////////////////////////////////////////////
 
 function RoundStep(nBig, nSm) {
 str2=nBig.split(".");
@@ -990,8 +1307,8 @@ return sm3;
 /////////////////////////////////////////////////////////////////////////
 function smart3(pizza, unit2, x22) {
 // 1;2;3;4;5 - ox ($pizza)
-//10;20;30;40;50 - на бумаге ($unit2)
-//$x22 - значение (например, 2.1)
+//10;20;30;40;50 - Г­Г  ГЎГіГ¬Г ГЈГҐ ($unit2)
+//$x22 - Г§Г­Г Г·ГҐГ­ГЁГҐ (Г­Г ГЇГ°ГЁГ¬ГҐГ°, 2.1)
 var pieces = pizza.split(";");//explode(";", $pizza);
 var pieces2 = unit2.split(";");//explode(";", $unit2);
 var xleft=parseFloat(pieces[0]); 
@@ -1072,7 +1389,7 @@ function nchar(qwerty, char2) {
 
 ///////////////
 
-function roundPlus(x, n) { //x - число, n - количество знаков 
+function roundPlus(x, n) { //x - Г·ГЁГ±Г«Г®, n - ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г§Г­Г ГЄГ®Гў 
   if(isNaN(x) || isNaN(n)) return false;
   var m = Math.pow(10,n);
   return Math.round(x*m)/m;
@@ -1126,7 +1443,7 @@ var m222=m2;
 return m2;
 }
 
-var caretReplace = function(_s) {
+var caretReplace = function(_s) {           //Changed
     if (_s.indexOf("^") > -1) {
         var tab = [];
         var powfunc="Math.pow";
@@ -1142,10 +1459,21 @@ var caretReplace = function(_s) {
         _s = joker + (tab.length - 1);
         while (_s.indexOf(joker) > -1) {
             _s = _s.replace(new RegExp(joker + "(\\d+)", "g"), function(m, d) {
-                return tab[d].replace(/(\w*)\^(\w*)/g, powfunc+"($1,$2)");
+                //return tab[d].replace(/(\w*)\^(\w*)/g, powfunc+"($1,$2)");
+                return tab[d].replace(/(\w*)\^(\w*.\w*)/g, powfunc+"($1,$2)");
             });
         }
     }
+    // Added Block
+    for(var i=1;i<_s.length;i++){
+      if (_s[i]=="x"&&!isNaN(_s[i-1])){
+        var magic=_s.split("");
+        magic.splice(i,0,"*");
+        _s=magic.join('');
+      }
+    }
+  
+    //end of it
     return _s;
 };
 
@@ -1169,7 +1497,7 @@ var str = [
     ['input3','input4']
 ];
 
-    textFrom2 = document.getElementById("tar0").value
+    textFrom2 = document.getElementById("target").value
 
 textArray = textFrom2.split("\n");
 
@@ -1193,13 +1521,13 @@ textArray[i] = textArray[i].replace(/[;]/g, '\t');
 Tneo=Tneo+textArray[i]+'\n';
 }
 
-    document.getElementById("tar0").value = Tneo;
+    document.getElementById("target").value = Tneo;
 
 ///////////////////////////////////
 
 //alert('5678');
 
-val = 0;//document.getElementById('box').value ;// вот так мы его и получаем. box это id вашего селекта замените его на свое
+val = 0;//document.getElementById('box').value ;// ГўГ®ГІ ГІГ ГЄ Г¬Г» ГҐГЈГ® ГЁ ГЇГ®Г«ГіГ·Г ГҐГ¬. box ГЅГІГ® id ГўГ ГёГҐГЈГ® Г±ГҐГ«ГҐГЄГІГ  Г§Г Г¬ГҐГ­ГЁГІГҐ ГҐГЈГ® Г­Г  Г±ГўГ®ГҐ
 
 var newst=["1234", "5678"];
 var oldst="";
@@ -1304,7 +1632,7 @@ document.getElementById('sca4').value=str[yB][1];
 
 }
 
-function textPlus(txtWord, cooX, cooY) { //x - число, n - количество знаков 
+function textPlus(txtWord, cooX, cooY) { //x - Г·ГЁГ±Г«Г®, n - ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г§Г­Г ГЄГ®Гў 
   
 //if(isNaN(x) || isNaN(n)) return false;
   //var m = Math.pow(10,n);
@@ -1316,3 +1644,231 @@ var q="<text x='"+cooX+"' y='"+cooY+"' fill='black' font-family='Arial' font-siz
 
     return q;
 }
+
+function MM2()
+{
+//window.location.reload();
+//document.getElementById('sca').value="";
+var s=localStorage.getItem('varMM'); 
+//alert(s);
+//alert(str);
+var x=document.getElementById('xBox').value;
+//alert(x);
+var x1=parseFloat(x);
+
+var y=document.getElementById('yBox').value;
+//alert(y);
+var y1=parseFloat(y);
+
+var ta = s.split(";;");
+
+//alert(ta[x1]+"!"+ta[y1]);
+
+document.getElementById('XPERS').value=ta[x1];
+document.getElementById('YPERS').value=ta[y1];
+
+} 
+
+/////////////////
+
+function MM3()
+{
+//window.location.reload();
+//document.getElementById('sca').value="";
+var s=localStorage.getItem('varMM'); 
+//alert(s);
+//alert(str);
+var x=document.getElementById('xBox').value;
+//alert(x);
+var x1=parseFloat(x);
+
+var y=document.getElementById('yBox').value;
+//alert(y);
+var y1=parseFloat(y);
+
+var ta = s.split(";;");
+
+//alert(ta[x1]+"!"+ta[y1]);
+
+document.getElementById('XPERS').value=ta[x1];
+document.getElementById('YPERS').value=ta[y1];
+
+//document.getElementById('xMMM').value=ta[x1];
+//document.getElementById('yMMM').value=ta[y1];
+
+document.getElementById('fwBox').value=x;
+document.getElementById('fhBox').value=y;
+
+} 
+
+
+/////////////////
+
+function dLeft()
+{
+x=document.getElementById("ABCD").value;
+var sus=x.split(";");
+
+x1=sus[0];
+
+document.getElementById("x330").value=x1;
+} 
+
+/////////////////
+
+function dRight()
+{
+x=document.getElementById("ABCD").value;
+var sus=x.split(";");
+
+x1=sus[1];
+
+document.getElementById("x330").value=x1;
+} 
+/////////////////
+
+function dLRM()
+{
+x=document.getElementById("ABCD").value;
+var sus=x.split(";");
+y=document.getElementById("XPERS").value;
+var susy=y.split(";");
+
+x1=sus[0];
+x2=sus[1];
+y1=susy[0];
+y2=susy[1];
+
+z=proZ(y, x);
+x000=z.toString();
+
+document.getElementById("x330").value=x000;
+} 
+
+/////////////////
+
+
+
+function dUp()
+{
+x=document.getElementById("YBCD").value;
+var sus=x.split(";");
+
+x1=sus[1];
+
+document.getElementById("y330").value=x1;
+} 
+
+/////////////////
+
+function dDown()
+{
+x=document.getElementById("YBCD").value;
+var sus=x.split(";");
+
+x1=sus[0];
+
+document.getElementById("y330").value=x1;
+} 
+
+/////////////////
+function dUDZ()
+{
+x=document.getElementById("YBCD").value;
+var sus=x.split(";");
+y=document.getElementById("YPERS").value;
+var susy=y.split(";");
+
+x1=sus[0];
+x2=sus[1];
+y1=susy[0];
+y2=susy[1];
+
+z=proZ(y, x);
+x000=z.toString();
+
+document.getElementById("y330").value=x000;
+} 
+
+/////////////////
+
+
+/////////////////
+function PLB()
+{
+MM3();
+
+	var a0=document.getElementById('XPERS').value; 
+	var b0=document.getElementById('ABCD').value; 
+	var ab=DeltaRange(a0,10); 
+  var bc=trioseq(ab)+';'; 
+	var de=bc.split(';;'); var fg=de[0]; var hi=props(fg,b0); 
+	document.getElementById('fw').value=hi; 
+	a0=document.getElementById('YPERS').value; 
+	b0=document.getElementById('YBCD').value; 
+	ab=DeltaRange(a0,10); bc=trioseq(ab)+';'; 
+	de=bc.split(';;'); 
+	fg=de[0]; hi=props(fg,b0); 
+	document.getElementById('fh').value=hi; 
+	alertText(); 
+//alert('1');
+	changeText();
+//alert('2');
+//copy9();
+} 
+
+/////////////////
+
+/////////////////
+
+function invOX()
+{
+x=document.getElementById("ABCD").value;
+var sus=x.split(";");
+
+//y=document.getElementById("YPERS").value;
+//var susy=y.split(";");
+
+x1=sus[0];
+x2=sus[1];
+
+//y1=susy[0];
+//y2=susy[1];
+
+//z=proZ(y, x);
+//x000=z.toString();
+
+var x3=x2.toString()+';'+x1.toString();
+
+document.getElementById("ABCD").value=x3;
+
+//document.getElementById("y330").value=x000;
+
+} 
+
+/////////////////
+
+function invOY()
+{
+x=document.getElementById("YBCD").value;
+var sus=x.split(";");
+
+//y=document.getElementById("YPERS").value;
+//var susy=y.split(";");
+
+x1=sus[0];
+x2=sus[1];
+
+//y1=susy[0];
+//y2=susy[1];
+
+//z=proZ(y, x);
+//x000=z.toString();
+
+var x3=x2.toString()+';'+x1.toString();
+
+document.getElementById("YBCD").value=x3;
+
+//document.getElementById("y330").value=x000;
+
+} 

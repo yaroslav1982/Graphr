@@ -17,14 +17,14 @@
             <div id="logo_holder">
                 <div id="logo"></div>
             </div>
-                <div id="header_text"><input type="button" value="Back to main page" onclick="history.back(-1)" /></div>
+                <div id="header_text"><input type="button" value="Вернуться на главную страницу" onclick="history.back(-1)" /></div>
 
-            <div id="header_text">Drawing diagrams from user data
+            <div id="header_text">Построение диаграмм по табличным данным
 
 </div>
         
             
-                <div id="header_text"><input type="button" value="Back to main page" onclick="history.back(-1)" /></div>
+                <div id="header_text"><input type="button" value="Вернуться на главную страницу" onclick="history.back(-1)" /></div>
             
 
 </div>
@@ -33,22 +33,19 @@
         <div class="floating_block">
             <div class="container centered">
                 <div class="content_header">
-                    Plotting diagrams
+                    Построение графиков
                 </div>
                 <div class="content_co_header">
-                    (SVG files)
+                    SVG файла
                 </div>
                 <div class="text_container">
-
-To add/move the graph, draw/move the area on the working area (rectangle) with the mouse. The X/Y column numbers are set before drawing a rectangle, 
-the axes are set after.
-
+                    Для добавления/перемещения графика нарисуйте/переместите область на рабочем поле (прямоугольник) с помощью мыши. Номера столбцов X/Y задаются до рисования прямоугольника, смещение осей - после.
                 </div>
             </div>
             <div id="create_wrapper">
                 <div id="sideLock"></div>
                 <div id="create_holder">
-                    <div id="creater" class="ui_button">Create workspace</div>
+                    <div id="creater" class="ui_button">Создать рабочее поле</div>
                 </div>
                 <div id="sider">
                     <div class="main container centered">
@@ -63,8 +60,8 @@ the axes are set after.
                             </div>
                             <div class="lined_block">
                                 <div class="btn_group">
-                                    <div class="ui_button" id="save_button" onclick="saveTextAsFile()">Save SVG</div>
-                                    <div class="ui_button" id="print_button" onclick="window.print();">Print SVG</div>
+                                    <div class="ui_button" id="save_button" onclick="saveTextAsFile()">Сохранить SVG</div>
+                                    <div class="ui_button" id="print_button" onclick="window.print();">Печать SVG</div>
                                 </div>
                             </div>
 
@@ -81,15 +78,15 @@ the axes are set after.
 			    <div class="lined_block">
 
                                 <div class="btn_group">	
-				    X/Y col numbers:
+				    Номера столбцов X/Y:
                             <script src="js/plotly_temp.js"></script>&emsp;
                             
-                                    Shift OX/OY axes:
+                                    Смещение осей OX/OY:
                             <script src="js/plotlyZ_temp.js"></script>&emsp;
 
 <br>
-<div class="ui_button" onclick="invOX();PLB();glue();changeText()">Invert OX</div>
-                                    <div class="ui_button" onclick="invOY();PLB();glue();changeText()">Invert OY</div>
+<div class="ui_button" onclick="invOX();PLB();glue();changeText()">Инверсия OX</div>
+                                    <div class="ui_button" onclick="invOY();PLB();glue();changeText()">Инверсия OY</div>
                                 </div>
                             </div>
                         </div>
@@ -102,17 +99,17 @@ the axes are set after.
                         </div>
                         <div id="scrollLock" class="centered" style="display:inline-block;">
                             <div style="display:flex;">
-                                <input type="checkbox" id="scrollLocker"/><label for="scrollLocker">Block workspace</label>
+                                <input type="checkbox" id="scrollLocker"/><label for="scrollLocker">Заблокировать рабочее поле</label>
                             </div>
                         </div>
                         <div class="centered">                
-                            <div class="ui_button" id="rect" style="display:none;">Draw rectangle</div>
-                            <div class="ui_button" id="ren" style="display:none;">Rename rectangle</div>
+                            <div class="ui_button" id="rect" style="display:none;">Нарисовать Прямоугольник</div>
+                            <div class="ui_button" id="ren" style="display:none;">Переименовать Прямоугольник</div>
                             <div class="btn_group">
-                                <div class="ui_button" id="del">Remove rectangle (L)</div>                    
-                                <div class="ui_button" id="clr">Remove all rectangles</div>
-<div class="ui_button" id="old_button">Remove plot</div>
-                                    <div class="ui_button" onclick="del9();glue();changeText()">Remove all plots</div>
+                                <div class="ui_button" id="del">Удалить Выделение (L)</div>                    
+                                <div class="ui_button" id="clr">Удалить все выделения</div>
+<div class="ui_button" id="old_button">Удалить график</div>
+                                    <div class="ui_button" onclick="del9();glue();changeText()">Удалить графики</div>
 
                             </div>
                         </div>
@@ -149,19 +146,19 @@ the axes are set after.
 
 <div class="container undisplayable"><div class="hideable">
 <div class="hideable_title">
-<p class="icon hide_icon"></p>Plot parameters</div>
+<p class="icon hide_icon"></p>Параметры Графика</div>
 
                     <div class="centered" style="display: none;">
                         <div class="flexed_block">
                             <div>Shift X=<input  class="input_type" type="text" id="tW1" name="tW1" value="0"/></div>
-                            <div>Width=<input id="tW2"  class="input_type" type="text" name="tW2" value="500"/></div>
+                            <div>Ширина=<input id="tW2"  class="input_type" type="text" name="tW2" value="500"/></div>
                             <div>Stretch=<input id="st1"  class="input_type" type="text" name="st1" value="1"/></div>
                             <div>Scale=<input id="sca1"  class="input_type" type="text" name="sca1" value="0;1"/></div>
                         </div>
 
                         <div class="flexed_block">
                             <div>Shift Y=<input id="tH1"  class="input_type" type="text" name="tH1" value="0"/></div>
-                            <div>Height=<input id="tH2" type="text"  class="input_type" name="tH2" value="500"/></div>
+                            <div>Высота=<input id="tH2" type="text"  class="input_type" name="tH2" value="500"/></div>
                             <div>Stretch=<input id="st2" type="text"  class="input_type" name="st2" value="1"/></div>
                             <div>Scale=<input id="sca2" type="text"  class="input_type" name="sca2" value="0;1"/></div>
                         </div>
@@ -187,7 +184,7 @@ the axes are set after.
 
 <div class="container undisplayable"><div class="hideable">
 <div class="hideable_title">
-<p class="icon hide_icon"></p>Plot points</div>
+<p class="icon hide_icon"></p>Точки графика</div>
 
                     <div class="centered" style="display: none;">
 
@@ -206,7 +203,7 @@ the axes are set after.
 
         <div class="container undisplayable"><div class="hideable">
 <div class="hideable_title">
-<p class="icon hide_icon"></p>OX parameters</div>
+<p class="icon hide_icon"></p>Параметры OX</div>
                     <div class="centered" style="display: none;">
 
                         <div>
@@ -238,7 +235,7 @@ the axes are set after.
         
 <div class="container undisplayable"><div class="hideable">
 <div class="hideable_title">
-<p class="icon hide_icon"></p>OY parameters</div>
+<p class="icon hide_icon"></p>Параметры OY</div>
 
                     <div class="centered" style="display: none;">
 
@@ -270,11 +267,11 @@ the axes are set after.
 
         <div class="container undisplayable"><div class="hideable">
 <div class="hideable_title">
-<p class="icon hide_icon"></p>Save file</div>
+<p class="icon hide_icon"></p>Сохраняемая часть</div>
 
 
                     <div class="centered" style="display: none;">
-                        <div class="container">Save text:</div>
+                        <div class="container">Текст для сохранения:</div>
                         <div class="container centered">
 
                             <textarea id="inputTextToSave" class="input_type"></textarea>
@@ -291,16 +288,16 @@ the axes are set after.
 
                         </div>
                         <div class="container">
-                            Save file (name):<input id="inputFileNameToSaveAs" class="input_type" placeholder="Plot"/>
+                            Название файла для сохранения:<input id="inputFileNameToSaveAs" class="input_type" placeholder="Plot"/>
                             <div class="mobile container">
                                 <div class="right_sided">
                                     <div class="btn_group">
-					<div class="ui_button" id="save_button" onclick="saveTextAsFile()">Save SVG</div>
-                                    	<div class="ui_button" id="print_button" onclick="window.print();">Print SVG</div>
+					<div class="ui_button" id="save_button" onclick="saveTextAsFile()">Сохранить SVG</div>
+                                    	<div class="ui_button" id="print_button" onclick="window.print();">Печать SVG</div>
                                     </div>
                                     <div class="btn_group">
-                                        <div class="ui_button" style="display:none;" onclick="glue()">Compile 2 windows</div>
-                                        <div class="ui_button" style="display:none;" onclick="copy9()">Shift</div>
+                                        <div class="ui_button" style="display:none;" onclick="glue()">Компилировать 2 окошка</div>
+                                        <div class="ui_button" style="display:none;" onclick="copy9()">Перенос</div>
                                     </div>
                                 </div>
 
@@ -322,8 +319,7 @@ the axes are set after.
 
     <div id="wrapper"></div>
     <div id="footer">
-        <div id="site_data">Customer: Yaroslav Solyanikov (Ярослав Соляников) +79140317248 @yaroslav1982<br>Contractor: Vladislav Muhamediev (Владислав Мухамедиев)
-</div>
+        <div id="site_data">Заказчик: Ярослав Соляников +79140317248 @yaroslav1982<br>Исполнитель: Владислав Мухамедиев</div>
     </div>
 
 This site uses programming code and Javascript/jQuery files from:<br>
